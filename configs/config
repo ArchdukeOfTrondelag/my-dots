@@ -1,0 +1,133 @@
+{
+	"layer": "top",
+	"position": "top",
+
+	"modules-left": [
+		"niri/mode",
+		"niri/workspaces",
+		"niri/window"
+	],
+
+	"modules-right": [
+		"network",
+		"battery",
+		"clock#date",
+		"clock#time"
+	],
+
+	// Modules
+
+	"battery": {
+		"interval": 10,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format-time": "{H}:{M:02}",
+		"format": "{icon} {capacity}%",
+		"format-charging": " {capacity}%",
+		"format-charging-full": " {capacity}%",
+		"format-full": "{icon} {capacity}%",
+		"tooltip": false
+	},
+
+	"clock#time": {
+		"interval": 10,
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+
+	"clock#date": {
+		"interval": 20,
+		"format": "{:%e %b %Y}",
+		"tooltip": false
+		//"tooltip-format": "{:%e %B %Y}"
+	},
+
+
+
+
+	"network": {
+		"interval": 5,
+		"format-wifi": " {essid} ({signalStrength}%)",
+		"format-ethernet": " {ifname}",
+		"format-disconnected": "No connection",
+		"tooltip": false
+	},
+
+	"niri/mode": {
+		"format": "{}",
+		"tooltip": false
+	},
+
+	"niri/window": {
+		"format": "{}",
+		"max-length": 66,
+		"tooltip": false
+	},
+
+	"niri/workspaces": {
+		"disable-scroll-wraparound": false,
+		"smooth-scrolling-threshold": 10,
+		"enable-bar-scroll": true,
+		"format": "{name}"
+	},
+
+
+	"tray": {
+		"icon-size": 18
+		//"spacing": 10
+	},
+
+	"custom/arrow1": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow2": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow3": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow4": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow5": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow6": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow7": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow8": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow9": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow10": {
+		"format": "",
+		"tooltip": false
+	}
+}
+
+// vi:ft=jsonc
