@@ -1,1 +1,1 @@
-my dot files
+This is a collection of my important dotfiles
