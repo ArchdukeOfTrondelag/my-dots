@@ -3,10 +3,12 @@ my programs:
 Window manager:
   - Niri
 
+display manager:
+  - Ly
+
 Programs:
   - Vim
   - Waybar
   - Tmux
   - Kitty
   - Fuzzel
-  - 
