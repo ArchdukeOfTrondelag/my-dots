@@ -1,0 +1,73 @@
+" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually just
+" /usr/share/vim/vimfiles/archlinux.vim) and sourced by the call to :runtime
+" you can find below.  If you wish to change any of those settings, you should
+" do it in this file (/etc/vimrc), since archlinux.vim will be overwritten
+" everytime an upgrade of the vim packages is performed.  It is recommended to
+" make changes after sourcing archlinux.vim since it alters the value of the
+" 'compatible' option.
+
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages.
+runtime! archlinux.vim
+
+" If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
+" Or better yet, read /usr/share/vim/vim80/vimrc_example.vim or the vim manual
+" and configure vim to your own liking!
+
+" do not load defaults if ~/.vimrc is missing
+"let skip_defaults_vim=1
+
+
+set autoindent
+set expandtab
+set shiftwidth=4
+set tabstop=4
+syntax on
+set number
+set relativenumber
+set foldmethod=manual
+set history=100
+set hlsearch
+set nocompatible
+set showcmd
+set showmatch
+set showmode
+set smartcase
+set wildmenu
+set cursorline
+syntax enable
+filetype on
+filetype plugin on
+filetype indent on
+set nobackup
+set nowrap
+set incsearch
+set history=100
+set wildmode=list:longest
+set ruler
+"set laststatus=2
+set noerrorbells
+set visualbell
+
+colorscheme elflord
+set background=dark
+
+
+
+
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+call plug#begin()
+
+" List your plugins here
+Plug 'tpope/vim-sensible'
+Plug 'mhinz/vim-startify'
+
+
+call plug#end()
