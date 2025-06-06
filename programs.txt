@@ -12,3 +12,4 @@ Programs:
   - Tmux
   - Kitty
   - Fuzzel
+  - Btop
