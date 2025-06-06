@@ -1,0 +1,12 @@
+my programs:
+
+Window manager:
+  - Niri
+
+Programs:
+  - Vim
+  - Waybar
+  - Tmux
+  - Kitty
+  - Fuzzel
+  - 
