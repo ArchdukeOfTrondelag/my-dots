@@ -17,7 +17,7 @@ runtime! archlinux.vim
 " do not load defaults if ~/.vimrc is missing
 "let skip_defaults_vim=1
 
-
+set t_Co=16
 set autoindent
 set expandtab
 set shiftwidth=4
