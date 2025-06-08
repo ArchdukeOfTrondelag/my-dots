@@ -4,3 +4,4 @@ fi
 
 alias -- spac='sudo pacman'
 alias -- svim='sudo vim'
+alias -- 
