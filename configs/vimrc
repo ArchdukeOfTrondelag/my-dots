@@ -52,7 +52,8 @@ set visualbell
 colorscheme elflord
 set background=dark
 
-
+let mapleader = "<Space>"
+nnoremap <C-p> :Files<CR>
 
 
 
@@ -68,6 +69,29 @@ call plug#begin()
 " List your plugins here
 Plug 'tpope/vim-sensible'
 Plug 'mhinz/vim-startify'
-
+Plug 'rbtnn/vim-vimscript_indentexpr'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
