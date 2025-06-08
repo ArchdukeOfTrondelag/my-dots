@@ -13,3 +13,8 @@ Programs:
   - Kitty
   - Fuzzel
   - Btop
+
+
+future plan:
+  - neovim
+  - emacs???
