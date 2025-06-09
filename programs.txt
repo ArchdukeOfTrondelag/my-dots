@@ -1,20 +1,19 @@
 my programs:
 
 Window manager:
-  - Niri
+  - Niri  # a scrollable window manager
 
 display manager:
-  - Ly
+  - Ly    # a minimalist display manager
 
 Programs:
-  - Vim
-  - Waybar
-  - Tmux
-  - Kitty
-  - Fuzzel
-  - Btop
+  - Vim   # the superior text editor
+  - Waybar #a good information bar
+  - tmux   # the best terminal multiplexer
+  - Kitty   # a good terminal emulator
+  - Btop     # a good top, system recource display
 
 
 future plan:
-  - neovim
-  - emacs???
+  - neovim     # powerfull and looks fun
+  - emacs???    # looks powerfull, have to check it out
