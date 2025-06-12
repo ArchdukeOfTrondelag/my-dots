@@ -8,6 +8,11 @@
 		"niri/window"
 	],
 
+	"modules-left": [
+		"hyprland/mode",
+		"hyprland/workspaces",
+		"hyprland/window"
+	],
 	"modules-right": [
 		"network",
 		"battery",
@@ -131,3 +136,4 @@
 }
 
 // vi:ft=jsonc
+
