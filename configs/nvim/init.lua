@@ -1,28 +1,34 @@
 require('plugins')
 
 vim.cmd([[
- colorscheme elflord
+ nnoremap <C-k> :FzfLua files<CR>
  nnoremap <C-s> :w<CR>
  nnoremap <C-n> :bn<CR>
  nnoremap <C-c> :bdelete<CR>
  nnoremap <C-a> :Startify<CR>
- let g:airline#extensions#tabline#enabled = 1
+ nnoremap <M-m> :set cursorline<CR>
+ nnoremap <M-n> :set nocursorline<CR>
+ nnoremap <M-s> :w<CR>
+ nnoremap <M-w> :q<CR>
+
+ nnoremap <M-9> :colorscheme nord<CR>
+ nnoremap <M-0> :colorscheme default<CR>
+
+ nnoremap <F5> :TODOToggle<CR>
+
+ set scrolloff=6
  set t_Co=16
  set number
  set relativenumber
+ set undodir=~/.vim/undo-di      "set where the undo file is stored
+ set undofile                    "sets a file where undos are saved, so if i undo and quit i can redo later
 ]])
-
-
-
-
-
-
 
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<C-g>', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<C-b>', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<C-l>', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<C-y>', builtin.help_tags, { desc = 'Telescope help tags' })
 
 
@@ -68,3 +74,27 @@ end
 
 vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
     { desc = "Open harpoon window" })
+
+
+
+
+vim.g.nord_italic = false
+vim.g.nord_contract = false
+vim.g.nord_borders = false
+vim.g.nord_disable_background = true
+vim.g.nord_bold = false
+require('nord').set()
+
+    local bufferline = require('bufferline')
+    bufferline.setup({
+        options = {
+            style_preset = bufferline.style_preset.no_italic,
+            -- or you can combine these e.g.
+            style_preset = {
+                bufferline.style_preset.no_italic,
+                bufferline.style_preset.no_bold
+            },
+        }
+    })
+
+
