@@ -1,87 +1,80 @@
 { config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+	imports =
+		[ # Include the results of the hardware scan.
+		./hardware-configuration.nix
+		];
 
-hardware.graphics = {
-   enable = true;
- };
+	boot.loader.grub.enable = true;
+	boot.loader.grub.device = "/dev/sda";
+	boot.loader.grub.useOSProber = true;
 
- hardware.nvidia = {
-   modesetting.enable = true;
-      open = true;
-   nvidiaSettings = true;
-   package = config.boot.kernelPackages.nvidiaPackages.stable;
- };
+	networking.hostName = "nixos"; # Define your hostname.
+		networking.networkmanager.enable = true;
 
-programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-};
+	time.timeZone = "Europe/Oslo";
+	i18n.defaultLocale = "nb_NO.UTF-8";
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+	services.xserver.xkb = {
+		layout = "no";
+		variant = "nodeadkeys";
+	};
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  time.timeZone = "Europe/Oslo";
-  i18n.defaultLocale = "nb_NO.UTF-8";
-  services.xserver.enable = true;
+	console.keyMap = "no";
+	services.printing.enable = true;
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.xserver.xkb = {
-    layout = "no";
-    variant = "nodeadkeys";
-  };
+	programs.zsh.enable = true;
+	users.defaultUserShell = pkgs.zsh;
 
-  console.keyMap = "no";
+	services.pulseaudio.enable = false;
+	security.rtkit.enable = true;
+	services.pipewire = {
+		enable = true;
+		alsa.enable = true;
+		alsa.support32Bit = true;
+		pulse.enable = true;
+	};
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+	users.users.nix = {
+		isNormalUser = true;
+		description = "nix";
+		extraGroups = [ "networkmanager" "wheel" ];
+		packages = with pkgs; [
+		];
+	};
 
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
+	nixpkgs.config.allowUnfree = true;
+	environment.systemPackages = with pkgs; [
 
-  users.users.nix = {
-    isNormalUser = true;
-    description = "nix";
-    extraGroups = [ "networkmanager" "wheel" ];
-  };
+			fd
+			bat
 
-  programs.firefox.enable = true;
-  nixpkgs.config.allowUnfree = true;
+			w3m
+			mutt
 
-  environment.systemPackages = with pkgs; [
-    lshw
-    vim 
-    kitty
-    git
-    wget
-    btop
-    tmux
-    openttd-jgrpp
-  ];
+			khal
+			cmatrix
+			fastfetch
+			btop
 
-  environment.variables.EDITOR = "vim";
+			gcc
+			lua
+
+			fzf
+			neovim
+			git
+			tmux
+
+			cage
+			vieb
+			foot
+	];
+
+programs.sway.enable = true;
 
 
-
-
-  system.stateVersion = "25.05"; # Did you read the comment?
+	system.stateVersion = "25.05"; # Did you read the comment?
 
 }
