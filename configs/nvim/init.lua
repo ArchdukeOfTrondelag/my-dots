@@ -1,100 +1,35 @@
 require('plugins')
 
 vim.cmd([[
- nnoremap <C-k> :FzfLua files<CR>
- nnoremap <C-s> :w<CR>
- nnoremap <C-n> :bn<CR>
- nnoremap <C-c> :bdelete<CR>
- nnoremap <C-a> :Startify<CR>
- nnoremap <M-m> :set cursorline<CR>
- nnoremap <M-n> :set nocursorline<CR>
- nnoremap <M-s> :w<CR>
- nnoremap <M-w> :q<CR>
+nnoremap <C-k> :FzfLuaFiles<CR>
+nnoremap <M-k> :FzfLua files ~/.cache/nvim/tnew/<CR>
+nnoremap <C-s> :w<CR>
+nnoremap <C-n> :bn<CR>
+nnoremap <C-c> :bdelete<CR>
+nnoremap <C-a> :Startify<CR>
+nnoremap <M-m> :set cursorline<CR>
+nnoremap <M-n> :set nocursorline<CR>
+nnoremap <M-s> :w<CR>
+nnoremap <M-w> :q<CR>
+nnoremap <F5> :Tnew<CR>
 
- nnoremap <M-9> :colorscheme nord<CR>
- nnoremap <M-0> :colorscheme default<CR>
-
- nnoremap <F5> :TODOToggle<CR>
-
- set scrolloff=6
- set t_Co=16
- set number
- set relativenumber
- set undodir=~/.vim/undo-di      "set where the undo file is stored
- set undofile                    "sets a file where undos are saved, so if i undo and quit i can redo later
+autocmd VimEnter * hi Visual guifg=magenta  
+set scrolloff=6
+set t_Co=16
+set number
+set relativenumber
+set undodir=~/.vim/undo-di      "set where the undo file is stored
+set undofile                    "sets a file where undos are saved, so if i undo and quit i can redo later
 ]])
 
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<C-g>', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<C-l>', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<C-y>', builtin.help_tags, { desc = 'Telescope help tags' })
-
-
-local harpoon = require("harpoon")
-
--- REQUIRED
-harpoon:setup()
--- REQUIRED
-
-vim.keymap.set("n", "<C-s>", function() harpoon:list():add() end)
-vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-
-vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
-
--- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-m>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-,>", function() harpoon:list():next() end)
-
-
-local harpoon = require('harpoon')
-harpoon:setup({})
-
--- basic telescope configuration
-local conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-    local file_paths = {}
-    for _, item in ipairs(harpoon_files.items) do
-        table.insert(file_paths, item.value)
-    end
-
-    require("telescope.pickers").new({}, {
-        prompt_title = "Harpoon",
-        finder = require("telescope.finders").new_table({
-            results = file_paths,
-        }),
-        previewer = conf.file_previewer({}),
-        sorter = conf.generic_sorter({}),
-    }):find()
-end
-
-vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
-    { desc = "Open harpoon window" })
-
-
-
-
 vim.g.nord_italic = false
-vim.g.nord_contract = false
-vim.g.nord_borders = false
-vim.g.nord_disable_background = true
-vim.g.nord_bold = false
 require('nord').set()
 
-    local bufferline = require('bufferline')
-    bufferline.setup({
-        options = {
-            style_preset = bufferline.style_preset.no_italic,
-            -- or you can combine these e.g.
-            style_preset = {
-                bufferline.style_preset.no_italic,
-                bufferline.style_preset.no_bold
-            },
-        }
-    })
+local bufferline = require('bufferline')
+bufferline.setup({
+	options = {
+		style_preset = bufferline.style_preset.no_italic,
+	}
+})
 
 
