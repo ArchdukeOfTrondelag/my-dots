@@ -18,6 +18,7 @@ fi
 alias -- t='nvim ~/TODO'
 alias -- clock='bash ~/.config/clock/clock.sh'
 alias -- fz='cd ~/nix/Filmer/ && fzf-tmux -p | xargs cage mpv'
+alias -- s='bash ~/.rgfzf.sh'
 
 # aliases
 # nixos build
