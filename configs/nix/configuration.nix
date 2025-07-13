@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{config, pkgs, ... }:
 {
 	imports =
 		[ # Include the results of the hardware scan.
@@ -23,7 +23,7 @@
 	console.keyMap = "no";
 	services.printing.enable = true;
 
-	nix.settings.experimental-features = [ "nix-command" "flakes" ];
+	nix.settings.experimental-features = [ "nix-command" "flakes"];
 
 	programs.zsh.enable = true;
 	users.defaultUserShell = pkgs.zsh;
@@ -49,7 +49,11 @@
 	environment.systemPackages = with pkgs; [
 
 			fd
+			zip
+			unzip
 			bat
+			cron
+			at
 
 			w3m
 			mutt
@@ -67,13 +71,15 @@
 			git
 			tmux
 
+			wiki-tui
+
 			cage
 			vieb
+			cmus
 			foot
-	];
-
-programs.sway.enable = true;
-
+			mpv
+			];
+		programs.niri.enable = true;
 
 	system.stateVersion = "25.05"; # Did you read the comment?
 
