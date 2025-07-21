@@ -1,11 +1,8 @@
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_CUSTOM=~/.oh-my-zsh/custom
-ZSH_THEME="jonathan"
-zstyle ':omz:update' frequency 13
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-plugins=(git zsh-autosuggestions fzf-tab zsh-syntax-highlighting)
-source $ZSH/oh-my-zsh.sh
+#plugins=(git zsh-autosuggestions fzf-tab zsh-syntax-highlighting)
+fpath+=($HOME/.zsh/pure)
+source ~/.zplug/init.zsh
+autoload -U promptinit; promptinit
+prompt pure
 if [[ -n $SSH_CONNECTION ]]; then
 	export EDITOR='nvim'
 fi
@@ -48,3 +45,22 @@ q() {
 	dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux -p) && cd "$dir" 
 }
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug 'Aloxaf/fzf-tab'
+zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'zsh-users/zsh-completions'
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+echo; clear
