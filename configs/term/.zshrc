@@ -12,7 +12,7 @@ fi
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 	tmux a -t default || exec tmux new -s default && exit;
 fi
-alias -- t='nvim ~/TODO'
+alias -- T='nvim ~/TODO'
 alias -- clock='bash ~/.config/clock/clock.sh'
 alias -- fz='cd ~/nix/Filmer/ && fzf-tmux -p | xargs cage mpv'
 alias -- s='bash ~/.rgfzf.sh'
@@ -32,7 +32,7 @@ alias -- vim='nvim'
 #makes the calendar open with kcal
 alias -- kcal='khal calendar'
 #makes fz search files in a pupop no priview and opens it in nvim when selected
-alias -- f='fd --type f --hidden --exclude Vieb --exclude .oh-my-zsh --exclude .gnupg --exclude .git --exclude .local --exclude .vim --exclude .cache | fzf-tmux -p --reverse --no-preview | xargs nvim'
+alias -- f='fd --type f --hidden --exclude Vieb --exclude .oh-my-zsh --exclude .gnupg --exclude .git --exclude .local --exclude .vim --exclude .cache | fzf-tmux -p -w 35% -h 25% -p --reverse --no-preview | xargs nvim'
 #does same as above, but in fullscreen and with priview
 alias -- fq='fd --type f --hidden --exclude .git --exclude Vieb --exclude .oh-my-zsh --exclude .local --exclude .vim --exclude .cache | fzf --preview "bat --color=always {}" --reverse | xargs nvim'
 #searches and priviews
