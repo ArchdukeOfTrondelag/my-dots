@@ -1,12 +1,7 @@
-#plugins=(git zsh-autosuggestions fzf-tab zsh-syntax-highlighting)
 fpath+=($HOME/.zsh/pure)
 source ~/.zplug/init.zsh
 autoload -U promptinit; promptinit
 prompt pure
-if [[ -n $SSH_CONNECTION ]]; then
-	export EDITOR='nvim'
-fi
-
 
 # auto starts tmux when launching a terminal/konsole etc
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -14,7 +9,6 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 alias -- T='nvim ~/TODO'
 alias -- clock='bash ~/.config/clock/clock.sh'
-alias -- fz='cd ~/nix/Filmer/ && fzf-tmux -p | xargs cage mpv'
 alias -- s='bash ~/.rgfzf.sh'
 
 # aliases
@@ -27,8 +21,6 @@ alias -- ncac='rm -rf ~/.cache/* && rm -rf .cache/nvim/'
 # remove old versions and rebuilds the system
 alias -- nosd='nix-store --gc && sudo nix-collect-garbage -d' 
 
-#makes vim open nvim
-alias -- vim='nvim'
 #makes the calendar open with kcal
 alias -- kcal='khal calendar'
 #makes fz search files in a pupop no priview and opens it in nvim when selected
