@@ -6,12 +6,16 @@ nnoremap <M-k> :FzfLua files ~/.cache/nvim/tnew/<CR>
 nnoremap <C-s> :w<CR>
 nnoremap <C-n> :bn<CR>
 nnoremap <C-c> :bdelete<CR>
+nnoremap <M-c> :bdelete!<CR>
 nnoremap <C-a> :Startify<CR>
 nnoremap <M-m> :set cursorline<CR>
 nnoremap <M-n> :set nocursorline<CR>
 nnoremap <M-s> :w<CR>
 nnoremap <M-w> :q<CR>
 nnoremap <F5> :Tnew<CR>
+nnoremap <F6> :terminal<CR>
+tnoremap <M-Esc> <C-\><C-n>
+nnoremap <C-l> :FzfLua buffers<CR>
 
 autocmd VimEnter * hi Visual guifg=magenta  
 set scrolloff=6
