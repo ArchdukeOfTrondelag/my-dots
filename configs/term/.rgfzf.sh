@@ -22,6 +22,10 @@ help_1() {
 	return 1
 }
 
+ed_1() {
+	echo "Jeg lover og sverger å ville tjene riket, kongen og vår fader, den allmektige, i alle tider, gode og vonde, så sant hjelpe meg Gud den allmektige og allvitende."
+}
+
 main () {
 	case "$1" in
 		find)
@@ -48,6 +52,11 @@ main () {
 			;;
 	esac
 
+	case "$1" in
+		ed1)
+			ed_1
+			;;
+	esac
 }
 
 main "$@"
