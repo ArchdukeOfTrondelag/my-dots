@@ -2,8 +2,8 @@ require('plugins')
 
 vim.cmd([[
 
-nnoremap <C-k> :FzfLuaFiles<CR>
-nnoremap <M-k> :FzfLua files ~/.cache/nvim/tnew/<CR>
+nnoremap <C-k> :FzfLua files<CR>
+nnoremap <M-k> :FZF --reverse ~<CR>
 nnoremap <C-l> :FzfLua buffers<CR>
 
 nnoremap <C-n> :bn<CR>
@@ -13,9 +13,7 @@ nnoremap <M-c> :bdelete!<CR>
 nnoremap <M-s> :w<CR>
 nnoremap <M-w> :q<CR>
 
-nnoremap <F2> :Tnew<CR>
-
-nnoremap <F3> :terminal<CR>
+nnoremap <F2> :terminal<CR>
 tnoremap <M-Esc> <C-\><C-n>
 
 autocmd VimEnter * hi Visual guifg=magenta  
