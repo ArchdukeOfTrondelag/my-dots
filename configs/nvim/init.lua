@@ -1,10 +1,12 @@
 require('plugins')
+-- require('hyper')
 
 vim.cmd([[
 
 nnoremap <C-k> :FzfLua files<CR>
-nnoremap <M-k> :FZF --reverse ~<CR>
+nnoremap <M-k> :FZF ~<CR>
 nnoremap <C-l> :FzfLua buffers<CR>
+nnoremap <M-l> :FzfLua lines<CR>
 
 nnoremap <C-n> :bn<CR>
 nnoremap <C-c> :bdelete<CR>
@@ -30,6 +32,12 @@ set undofile                    "sets a file where undos are saved, so if i undo
 
 ]])
 
+require'nvim-treesitter.configs'.setup {
+	highlight = { enable = true },
+	indent = { enable = true },
+	incremental_selection = { enable = true }
+}
+
 vim.g.nord_italic = false
 require('nord').set()
 
@@ -39,5 +47,4 @@ bufferline.setup({
 		style_preset = bufferline.style_preset.no_italic,
 	}
 })
-
 
