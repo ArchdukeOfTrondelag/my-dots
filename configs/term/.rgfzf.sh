@@ -51,12 +51,6 @@ main () {
 			help_1
 			;;
 	esac
-
-	case "$1" in
-		ed1)
-			ed_1
-			;;
-	esac
 }
 
 main "$@"

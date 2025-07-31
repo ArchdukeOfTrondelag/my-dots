@@ -6,7 +6,10 @@ prompt pure
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 	tmux a -t default || exec tmux new -s default && exit;
 fi
-alias -- s='source ~/.rgfzf.sh'
+
+alias c='source ~/.rgfzf.sh cd'
+alias f='source ~/.rgfzf.sh find'
+alias s='source ~/.rgfzf.sh open'
 
 # aliases
 # nixos build
@@ -18,8 +21,6 @@ alias -- ncac='rm -rf ~/.cache/* && rm -rf .cache/nvim/'
 # remove old versions and rebuilds the system
 alias -- nosd='nix-store --gc && sudo nix-collect-garbage -d' 
 
-#makes the calendar open with kcal
-alias -- kcal='khal calendar'
 
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -28,7 +29,7 @@ zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-completions'
 
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
+    printf "Install? [Y/n]: "
     if read -q; then
         echo; zplug install
     fi
