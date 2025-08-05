@@ -10,6 +10,7 @@ fi
 alias c='source ~/.rgfzf.sh cd'
 alias f='source ~/.rgfzf.sh find'
 alias s='source ~/.rgfzf.sh open'
+alias cs='source ~/.rgfzf.sh co'
 
 # aliases
 # nixos build
@@ -27,6 +28,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'Aloxaf/fzf-tab'
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-completions'
+zplug 'zsh-users/zsh-autosuggestions'
 
 if ! zplug check --verbose; then
     printf "Install? [Y/n]: "
