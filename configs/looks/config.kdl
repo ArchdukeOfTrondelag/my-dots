@@ -60,6 +60,7 @@ layout {
 	}
 }
 prefer-no-csd
+spawn-at-startup "clipse -listen" 
 spawn-at-startup "swww-daemon" 
 spawn-at-startup "swww img ~/Bilder/NixosAnime.png"
 spawn-at-startup "waybar"
@@ -71,7 +72,7 @@ animations {
 	clip-to-geometry true
 }
 binds {
-	Mod+Shift+Slash { show-hotkey-overlay; }
+	Mod+Shift+S { show-hotkey-overlay; }
 	Mod+Return { spawn "kitty"; }
 	Alt+Shift+E { spawn "swaylock"; }
 	Mod+D { spawn "fuzzel"; }
