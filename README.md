@@ -1,3 +1,10 @@
+To set up everything you can use :
+```
+curl -O https://raw.githubusercontent.com/ArchdukeOfTrondelag/my-dots/main/configs/setup.sh
+bash setup.sh
+```
+
+
 This is the collection of my dotfiles
 I will try to document it and give usefull comments
 Please tell me if somethings missing or you have improvements
