@@ -20,3 +20,6 @@ mv .config/my-dots/configs/vieb ~/.config
 mv .config/my-dots/configs/home/.tmux.conf ./
 mv .config/my-dots/configs/home/.rgfzf.sh ./
 mv .config/my-dots/configs/home/.zshrc ./
+
+rm setup.sh
+rm -rf .config/my-dots
