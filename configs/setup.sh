@@ -32,15 +32,14 @@ mv .config/my-dots/configs/home/.tmux.conf ./
 mv .config/my-dots/configs/home/.rgfzf.sh ./
 mv .config/my-dots/configs/home/.zshrc ./
 
+rm -r .config/my-dots
+clear
 
-
-
-
-
-
+tmux
 
 clear
 
+echo " "
 echo " Now you have a set of programs ready for use "
 echo " Those are: "
 echo " Niri "
@@ -63,5 +62,24 @@ echo " cs to fuzzy find a directory and open a new named file "
 echo "   "
 echo " all of these open in nvim "
 echo " ************************************************* "
+echo "  "
+echo " Type Y to start zsh and install the plugins "
+echo " Ater the instalation this will take some time, so just wait "
+echo " if you don't want this type N or nothing and press return "
+echo "  "
 
 
+
+
+
+
+
+
+
+read -r ord
+if [ "$ord" = "Y" ]; then 
+  zsh
+else 
+  echo " Restart zsh manually to start the plugin instalation "
+  echo "  "
+fi
