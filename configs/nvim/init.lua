@@ -21,12 +21,18 @@ vim.keymap.set('n', '<C-c>', ':bdelete <CR>')
 vim.keymap.set('n', '<M-c>', ':bdelete! <CR>')
 vim.keymap.set('n', '<F2>', ':terminal <CR>')
 vim.keymap.set('n', '<F3>', ':silent  !tmux popup -w 120 -y 0 -x 1000 <CR>')
-
+vim.keymap.set('n', '<leader>s', ':e ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>|', ':w<CR>')
+vim.keymap.set('n', '<leader>q', ':let save_cursor = getpos(".")<CR> :execute "normal! G" | execute "normal! V" | execute "normal! gg" | execute "normal! ="<CR> :call setpos(".", save_cursor)<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR>')
+vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR>')
+vim.keymap.set('n', '<leader>w', '<cmd>lua vim.diagnostic.open_float()<CR>')
 
 vim.pack.add({
   { src = "https://github.com/ibhagwan/fzf-lua" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+  { src = "https://github.com/nvim-telescope/telescope.nvim" },
+  { src = "https://github.com/nvim-lua/plenary.nvim" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
   { src = "https://github.com/vim-airline/vim-airline" },
   { src = "https://github.com/akinsho/bufferline.nvim" },
@@ -58,7 +64,7 @@ vim.keymap.set('n', '<M-l>', ':FzfLua lines<CR>')
 
 vim.cmd("set completeopt+=noselect")
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.lsp.enable({ 'lua_ls' })
+vim.lsp.enable({ 'lua_ls', 'bashls' })
 
 local bufferline = require('bufferline')
 bufferline.setup({
@@ -73,6 +79,7 @@ require 'nvim-treesitter.configs'.setup {
   incremental_selection = { enable = true }
 }
 
+vim.keymap.set('n', '<leader>f', ':Dashboard<CR>')
 require('dashboard').setup { -- clone the git reposetory into .local share etc nvim myplugins and a directory
   config = {
     header = {
@@ -125,5 +132,12 @@ require('dashboard').setup { -- clone the git reposetory into .local share etc n
         key = 'q',
       },
     },
+    footer = {
+      "⠀⠀⣀⣠⠀⠀⠀ ",
+      "⠀⠛⠉⠉⢻⣶⡀ ",
+      "⠀⠀⢰⣦⣯⣿⢱ ",
+      "⠀⠀⠸⡈⢁⠉⠈ ",
+      "⠀⠀⠀⠈⠁⠀⠀ ",
+    }
   }
 }
