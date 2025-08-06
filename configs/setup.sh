@@ -19,7 +19,7 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 mkdir -p ".zsh"
 git clone https://github.com/sindresorhus/pure.git ".zsh/pure"
 
-git clone https://github.com/ArchdukeOfTrondelag/my-dots .config/my-dots
+git clone https://github.com/ArchdukeOfTrondelag/my-dots.git my-dots
 
 clear
 
@@ -47,28 +47,24 @@ case  $valg in
     ;;
 
   wx)
-    mv .config/my-dots/configs/niri ~/.config
-    mv .config/my-dots/configs/waybar ~/.config
-    mv .config/my-dots/configs/swaylock ~/.config
+    mv my-dots/configs/niri ~/.config
+    mv my-dots/configs/waybar ~/.config
+    mv my-dots/configs/swaylock ~/.config
 
-    mv .config/my-dots/configs/i3 ~/.config
-    mv .config/my-dots/configs/polybar ~/.config
-    mv .config/my-dots/configs/rofi ~/.config
+    mv my-dots/configs/i3 ~/.config
+    mv my-dots/configs/polybar ~/.config
+    mv my-dots/configs/rofi ~/.config
     ;;
 esac
 
-mv .config/my-dots/configs/nvim ~/.config
-mv .config/my-dots/configs/kitty ~/.config
+mv my-dots/configs/nvim ~/.config
+mv my-dots/configs/kitty ~/.config
 
-mv .config/my-dots/configs/home/.tmux.conf ./
-mv .config/my-dots/configs/home/.rgfzf.sh ./
-mv .config/my-dots/configs/home/.zshrc ./
+mv my-dots/configs/home/.tmux.conf ./
+mv my-dots/configs/home/.rgfzf.sh ./
+mv my-dots/configs/home/.zshrc ./
 
-rm -r .config/my-dots
-
-clear
-
-tmux
+rm -r my-dots
 
 clear
 
