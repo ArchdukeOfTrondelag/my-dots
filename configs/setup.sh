@@ -10,7 +10,6 @@ rm -r .config/polybar
 rm -r .config/kitty
 rm -r .config/rofi
 rm -r .config/swaylock
-rm -r .config/vieb/viebrc
 rm .tmux.conf
 rm .zshrc
 rm -r .zsh
@@ -34,28 +33,29 @@ echo " this can also be if you don't want any config installed, type nothing or 
 
 read -r valg
 
-if [ "$valg" = "w" ]; then
-  mv .config/my-dots/configs/niri ~/.config
-  mv .config/my-dots/configs/waybar ~/.config
-  mv .config/my-dots/configs/swaylock ~/.config
-fi
+case  $valg in
+  w)
+    mv .config/my-dots/configs/niri ~/.config
+    mv .config/my-dots/configs/waybar ~/.config
+    mv .config/my-dots/configs/swaylock ~/.config
+    ;;
 
-if [ "$valg" = "x" ]; then
-  mv .config/my-dots/configs/i3 ~/.config
-  mv .config/my-dots/configs/polybar ~/.config
-  mv .config/my-dots/configs/rofi ~/.config
-fi
+  x)
+    mv .config/my-dots/configs/i3 ~/.config
+    mv .config/my-dots/configs/polybar ~/.config
+    mv .config/my-dots/configs/rofi ~/.config
+    ;;
 
-if [ "$valg" = "wx" ]; then
-  mv .config/my-dots/configs/niri ~/.config
-  mv .config/my-dots/configs/waybar ~/.config
-  mv .config/my-dots/configs/swaylock ~/.config
+  wx)
+    mv .config/my-dots/configs/niri ~/.config
+    mv .config/my-dots/configs/waybar ~/.config
+    mv .config/my-dots/configs/swaylock ~/.config
 
-  mv .config/my-dots/configs/i3 ~/.config
-  mv .config/my-dots/configs/polybar ~/.config
-  mv .config/my-dots/configs/rofi ~/.config
-fi
-
+    mv .config/my-dots/configs/i3 ~/.config
+    mv .config/my-dots/configs/polybar ~/.config
+    mv .config/my-dots/configs/rofi ~/.config
+    ;;
+esac
 
 mv .config/my-dots/configs/nvim ~/.config
 mv .config/my-dots/configs/kitty ~/.config
@@ -76,27 +76,29 @@ echo " "
 echo " Now you have a set of programs ready for use "
 echo " Those are: "
 
-if [ "$valg" = "w" ]; then
-  echo " Niri "
-  echo " Waybar "
-  echo " swaylock "
-fi
+case $valg in
+  w)
+    echo " Niri "
+    echo " Waybar "
+    echo " swaylock "
+    ;;
 
-if [ "$valg" = "x" ]; then
-  echo " i3 "
-  echo " Rofi "
-  echo " Polybar "
-fi
+  x)
+    echo " i3 "
+    echo " Rofi "
+    echo " Polybar "
+    ;;
 
-if [ "$valg" = "wx" ]; then
-  echo " Niri "
-  echo " Waybar "
-  echo " swaylock "
+  wx)
+    echo " Niri "
+    echo " Waybar "
+    echo " swaylock "
 
-  echo " i3 "
-  echo " Rofi "
-  echo " Polybar "
-fi
+    echo " i3 "
+    echo " Rofi "
+    echo " Polybar "
+    ;;
+esac
 
 echo " zsh "
 echo " neovim "
@@ -121,14 +123,13 @@ echo " bat "
 echo "  "
 echo " ************************************************* "
 echo "  "
-echo " Type Y to start zsh and install the plugins "
+echo " Type y to start zsh and install the plugins "
 echo " Ater the instalation this will take some time, so just wait "
-echo " if you don't want this type N or nothing and press return "
 echo "  "
 
 
 read -r ord
-if [ "$ord" = "Y" ]; then 
+if [ "$ord" = "y" ]; then 
   zsh
 else 
   echo " Restart zsh manually to start the plugin instalation "
