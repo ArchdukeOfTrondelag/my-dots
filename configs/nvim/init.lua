@@ -15,6 +15,7 @@ vim.cmd([[ set undodir=~/.vim/undo-di ]])
 vim.cmd([[ set undofile ]])
 vim.cmd([[ tnoremap <M-Esc> <C-\><C-n> ]])
 vim.cmd([[ autocmd VimEnter * hi Visual guifg=magenta ]])
+vim.cmd([[ highlight DiagnosticError guifg=BrightRed ]])
 
 vim.keymap.set('n', '<C-n>', ':bn <CR>')
 vim.keymap.set('n', '<C-c>', ':bdelete <CR>')
@@ -23,10 +24,34 @@ vim.keymap.set('n', '<F2>', ':terminal <CR>')
 vim.keymap.set('n', '<F3>', ':silent  !tmux popup -w 120 -y 0 -x 1000 <CR>')
 vim.keymap.set('n', '<leader>s', ':e ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>|', ':w<CR>')
-vim.keymap.set('n', '<leader>q', ':let save_cursor = getpos(".")<CR> :execute "normal! G" | execute "normal! V" | execute "normal! gg" | execute "normal! ="<CR> :call setpos(".", save_cursor)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>q',
+  ':let save_cursor = getpos(".")<CR> :execute "normal! G" | execute "normal! V" | execute "normal! gg" | execute "normal! ="<CR> :call setpos(".", save_cursor)<CR>',
+  { noremap = true, silent = true })
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR>')
 vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR>')
+
 vim.keymap.set('n', '<leader>w', '<cmd>lua vim.diagnostic.open_float()<CR>')
+vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>')
+
+vim.keymap.set('n', '<leader>a', function()
+  local new_config = not vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({  virtual_text = new_config })
+end, { desc = 'Toggle diagnostic virtual_text' })
+
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+    },
+    linehl = {
+      [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+    },
+    numhl = {
+      [vim.diagnostic.severity.WARN] = 'WarningMsg',
+    },
+  },
+})
 
 vim.pack.add({
   { src = "https://github.com/ibhagwan/fzf-lua" },
