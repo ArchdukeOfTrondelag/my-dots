@@ -33,7 +33,7 @@ echo " this can also be if you don't want any config installed, type nothing or 
 
 read -r valg
 
-case  $valg in
+case "$valg" in
   w)
     mv .config/my-dots/configs/niri ~/.config
     mv .config/my-dots/configs/waybar ~/.config
@@ -125,7 +125,7 @@ echo "  "
 
 
 read -r ord
-if [ "$ord" = "y" ]; then 
+if [ "$ord" == "y" ]; then 
   zsh
 else 
   echo " Restart zsh manually to start the plugin instalation "
