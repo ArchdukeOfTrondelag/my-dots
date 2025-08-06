@@ -13,6 +13,8 @@ rm -r .config/swaylock
 rm -r .config/vieb/viebrc
 rm .tmux.conf
 rm .zshrc
+rm -r .zsh
+rm -r .zplug
 
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 mkdir -p ".zsh"
