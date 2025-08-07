@@ -1,4 +1,3 @@
-runtime! archlinux.vim
 
 "configs
 set foldmethod=marker           "set folds between {{{ and }}}
@@ -25,7 +24,7 @@ set ruler                       "shows where the cursor it in colom and line
 set laststatus=0                "set statusbar to 0
 set noerrorbells                "disables the error bell
 set smartindent                 "improve indent
-colorscheme elflord             "sets colourscheme to elflord
+colorscheme sorbet              "sets colourscheme to elflord
 set background=dark             "tells vim background colour for it to give good contrast
 set undodir=~/.vim/undo-di      "set where the undo file is stored
 set undofile                    "sets a file where undos are saved, so if i undo and quit i can redo later
@@ -38,12 +37,12 @@ let g:airline#extensions#tabline#enabled = 1           "sets the better statusba
 
 "keybinds/maps
 let mapleader = "<Space>"                                   "set leader key to space
-nnoremap <C-p> :Files<CR>                                   "set control p to enable the fuzzy finder, to search for files and edit them
-nnoremap <C-o> :!fzf --preview 'bat --color=always {}'<CR>  "sets fuzzy in terminal with colours after control O
+nnoremap <C-p> :Files<CR>
+nnoremap <C-o> :!fzf --preview 'bat --color=always {}'<CR>
 nnoremap <C-s> :w<CR>                                       "ctrol s saves the file
 nnoremap <C-n> :bn<CR>                                      "control n goes to next open buffer (a opened file with control p opens as a buffer, it doesnt close your current file)
 nnoremap <C-c> :bdelete<CR>                                 "control c close current buffer
-nnoremap <C-a> :Startify<CR>                                "control a starts startify in the start interface
+nnoremap <C-a> :Startify<CR>
 
 "Plug manager   install the plugin manager
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
