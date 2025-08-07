@@ -23,12 +23,12 @@ git clone https://github.com/ArchdukeOfTrondelag/my-dots.git my-dots
 
 clear
 
-echo " Which profile do you wish for? "
+echo " Which profile do you wish for? ", "$GREEN"
 echo " type w for wayland "
 echo " or x for xorg/x11 "
 echo " or type wx for wayland and xorg "
-echo " it's important that you write in lower case "
-echo " otherwise none of them will be installed "
+echo " it's important that you write in lower case ", "$RED"
+echo " otherwise none of them will be installed ", "$YELLOW"
 echo " this can also be if you don't want any config installed, type nothing or something else "
 
 read -r valg
@@ -36,28 +36,28 @@ read -r valg
 
 if [ "$valg" == "w" ]; then 
     cp -r my-dots/configs/niri/* ~/.config/niri/
-    cp -r my-dots/configs/waybar ~/.config
-    cp -r my-dots/configs/swaylock ~/.config
+    cp -r my-dots/configs/waybar/* ~/.config/waybar/
+    cp -r my-dots/configs/swaylock/* ~/.config/swaylock/
 fi
 
 if [ "$valg" == "x" ]; then 
-    cp -r my-dots/configs/i3 ~/.config
-    cp -r my-dots/configs/polybar ~/.config
-    cp -r my-dots/configs/rofi ~/.config
+    cp -r my-dots/configs/i3/* ~/.config/
+    cp -r my-dots/configs/polybar/* ~/.config/
+    cp -r my-dots/configs/rofi/* ~/.config/
 fi
 
 if [ "$valg" == "wx" ]; then 
     cp -r my-dots/configs/niri/* ~/.config/niri/
-    cp -r my-dots/configs/waybar ~/.config
-    cp -r my-dots/configs/swaylock ~/.config
+    cp -r my-dots/configs/waybar/* ~/.config/
+    cp -r my-dots/configs/swaylock/* ~/.config/
 
-    cp -r my-dots/configs/i3 ~/.config
-    cp -r my-dots/configs/polybar ~/.config
-    cp -r my-dots/configs/rofi ~/.config
+    cp -r my-dots/configs/i3/* ~/.config/
+    cp -r my-dots/configs/polybar/* ~/.config/
+    cp -r my-dots/configs/rofi/* ~/.config/
 fi
 
-cp -r my-dots/configs/nvim ~/.config
-cp -r my-dots/configs/kitty ~/.config
+cp -r my-dots/configs/nvim/* ~/.config/nvim/
+cp -r my-dots/configs/kitty/* ~/.config/kitty/
 
 cp -r my-dots/configs/home/.tmux.conf ./
 cp -r my-dots/configs/home/.rgfzf.sh ./
@@ -116,8 +116,8 @@ echo " bat "
 echo "  "
 echo " ************************************************* "
 echo "  "
-echo " Type y to start zsh and install the plugins "
-echo " Ater the instalation this will take some time, so just wait "
+echo " Type y to start zsh and install the plugins ", "$YELLOW"
+echo " Ater the instalation this will take some time, so just wait ", "$RED"
 echo "  "
 
 
@@ -128,3 +128,5 @@ else
   echo " Restart zsh manually to start the plugin instalation "
   echo "  "
 fi
+
+rm -r setup.sh
