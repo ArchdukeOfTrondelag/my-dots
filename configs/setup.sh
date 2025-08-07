@@ -35,15 +35,15 @@ read -r valg
 
 
 if [ "$valg" == "w" ]; then 
-    mv .config/my-dots/configs/niri ~/.config
-    mv .config/my-dots/configs/waybar ~/.config
-    mv .config/my-dots/configs/swaylock ~/.config
+    mv my-dots/configs/niri ~/.config
+    mv my-dots/configs/waybar ~/.config
+    mv my-dots/configs/swaylock ~/.config
 fi
 
 if [ "$valg" == "x" ]; then 
-    mv .config/my-dots/configs/i3 ~/.config
-    mv .config/my-dots/configs/polybar ~/.config
-    mv .config/my-dots/configs/rofi ~/.config
+    mv my-dots/configs/i3 ~/.config
+    mv my-dots/configs/polybar ~/.config
+    mv my-dots/configs/rofi ~/.config
 fi
 
 if [ "$valg" == "wx" ]; then 
