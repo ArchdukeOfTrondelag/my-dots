@@ -33,20 +33,20 @@ echo " this can also be if you don't want any config installed, type nothing or 
 
 read -r valg
 
-case "$valg" in
-  w)
+
+if [ "$valg" == "w" ]; then 
     mv .config/my-dots/configs/niri ~/.config
     mv .config/my-dots/configs/waybar ~/.config
     mv .config/my-dots/configs/swaylock ~/.config
-    ;;
+fi
 
-  x)
+if [ "$valg" == "x" ]; then 
     mv .config/my-dots/configs/i3 ~/.config
     mv .config/my-dots/configs/polybar ~/.config
     mv .config/my-dots/configs/rofi ~/.config
-    ;;
+fi
 
-  wx)
+if [ "$valg" == "wx" ]; then 
     mv my-dots/configs/niri ~/.config
     mv my-dots/configs/waybar ~/.config
     mv my-dots/configs/swaylock ~/.config
@@ -54,8 +54,7 @@ case "$valg" in
     mv my-dots/configs/i3 ~/.config
     mv my-dots/configs/polybar ~/.config
     mv my-dots/configs/rofi ~/.config
-    ;;
-esac
+fi
 
 mv my-dots/configs/nvim ~/.config
 mv my-dots/configs/kitty ~/.config
@@ -72,29 +71,27 @@ echo " "
 echo " Now you have a set of programs ready for use "
 echo " Those are: "
 
-case $valg in
-  w)
-    echo " Niri "
-    echo " Waybar "
-    echo " swaylock "
-    ;;
+if [ "$valg" == "w" ]; then 
+  echo " Niri "
+  echo " Waybar "
+  echo " swaylock "
+fi
 
-  x)
-    echo " i3 "
-    echo " Rofi "
-    echo " Polybar "
-    ;;
+if [ "$valg" == "x" ]; then 
+  echo " i3 "
+  echo " Rofi "
+  echo " Polybar "
+fi
 
-  wx)
-    echo " Niri "
-    echo " Waybar "
-    echo " swaylock "
+if [ "$valg" == "wx" ]; then 
+  echo " Niri "
+  echo " Waybar "
+  echo " swaylock "
 
-    echo " i3 "
-    echo " Rofi "
-    echo " Polybar "
-    ;;
-esac
+  echo " i3 "
+  echo " Rofi "
+  echo " Polybar "
+fi
 
 echo " zsh "
 echo " neovim "
