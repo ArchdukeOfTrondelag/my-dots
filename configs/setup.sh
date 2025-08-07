@@ -35,7 +35,7 @@ read -r valg
 
 
 if [ "$valg" == "w" ]; then 
-    cp -r my-dots/configs/niri ~/.config
+    cp -r my-dots/configs/niri/* ~/.config/niri/
     cp -r my-dots/configs/waybar ~/.config
     cp -r my-dots/configs/swaylock ~/.config
 fi
@@ -47,7 +47,7 @@ if [ "$valg" == "x" ]; then
 fi
 
 if [ "$valg" == "wx" ]; then 
-    cp -r my-dots/configs/niri ~/.config
+    cp -r my-dots/configs/niri/* ~/.config/niri/
     cp -r my-dots/configs/waybar ~/.config
     cp -r my-dots/configs/swaylock ~/.config
 
