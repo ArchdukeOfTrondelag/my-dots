@@ -35,26 +35,46 @@ read -r valg
 
 
 if [ "$valg" == "w" ]; then 
-    cp -r my-dots/configs/niri/* ~/.config/niri/
-    cp -r my-dots/configs/waybar/* ~/.config/waybar/
-    cp -r my-dots/configs/swaylock/* ~/.config/swaylock/
+  mkdir ~/.config/niri
+  mkdir ~/.config/waybar
+  mkdir ~/.config/swaylock
+
+  cp -r my-dots/configs/niri/* ~/.config/niri/
+  cp -r my-dots/configs/waybar/* ~/.config/waybar/
+  cp -r my-dots/configs/swaylock/* ~/.config/swaylock/
 fi
 
 if [ "$valg" == "x" ]; then 
-    cp -r my-dots/configs/i3/* ~/.config/
-    cp -r my-dots/configs/polybar/* ~/.config/
-    cp -r my-dots/configs/rofi/* ~/.config/
+  mkdir ~/.config/i3
+  mkdir ~/.config/polybar
+  mkdir ~/.config/rofi
+
+  cp -r my-dots/configs/i3/* ~/.config/i3/
+  cp -r my-dots/configs/polybar/* ~/.config/polybar/
+  cp -r my-dots/configs/rofi/* ~/.config/rofi/
 fi
 
 if [ "$valg" == "wx" ]; then 
-    cp -r my-dots/configs/niri/* ~/.config/niri/
-    cp -r my-dots/configs/waybar/* ~/.config/
-    cp -r my-dots/configs/swaylock/* ~/.config/
+  mkdir ~/.config/niri
+  mkdir ~/.config/waybar
+  mkdir ~/.config/swaylock
 
-    cp -r my-dots/configs/i3/* ~/.config/
-    cp -r my-dots/configs/polybar/* ~/.config/
-    cp -r my-dots/configs/rofi/* ~/.config/
+  mkdir ~/.config/i3
+  mkdir ~/.config/polybar
+  mkdir ~/.config/rofi
+
+  cp -r my-dots/configs/niri/* ~/.config/niri/
+  cp -r my-dots/configs/waybar/* ~/.config/waybar/
+  cp -r my-dots/configs/swaylock/* ~/.config/swaylock/
+
+  cp -r my-dots/configs/i3/* ~/.config/i3/
+  cp -r my-dots/configs/polybar/* ~/.config/polybar/
+  cp -r my-dots/configs/rofi/* ~/.config/rofi/
 fi
+
+
+mkdir ~/.config/nvim
+mkdir ~/.config/kitty
 
 cp -r my-dots/configs/nvim/* ~/.config/nvim/
 cp -r my-dots/configs/kitty/* ~/.config/kitty/
