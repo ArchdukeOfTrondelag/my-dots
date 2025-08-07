@@ -1,22 +1,19 @@
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.signcolumn = "yes"
-vim.o.wrap = false
-vim.o.tabstop = 2
-vim.o.expandtab = true
-vim.o.shiftwidth = 2
-vim.g.mapleader = " "
-vim.o.cursorline = true
-vim.o.termguicolors = true
-vim.o.scrolloff = 10
-vim.o.winborder = "rounded"
-
-vim.cmd([[ set undodir=~/.vim/undo-di ]])
-vim.cmd([[ set undofile ]])
-vim.cmd([[ tnoremap <M-Esc> <C-\><C-n> ]])
-vim.cmd([[ autocmd VimEnter * hi Visual guifg=magenta ]])
-vim.cmd([[ highlight DiagnosticError guifg=BrightRed ]])
-
+-- #1 Plugins
+vim.pack.add({
+  { src = "https://github.com/ibhagwan/fzf-lua" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+  { src = "https://github.com/neovim/nvim-lspconfig" },
+  { src = "https://github.com/vim-airline/vim-airline" },
+  { src = "https://github.com/akinsho/bufferline.nvim" },
+  { src = "https://github.com/AlexvZyl/nordic.nvim" },
+  { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+  { src = "https://github.com/nvimdev/dashboard-nvim" },
+  { src = "https://github.com/numToStr/FTerm.nvim" },
+  { src = "https://github.com/windwp/nvim-autopairs" },
+  -- { src = "https://github.com/nvim-lua/plenary.nvim" },
+  -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
+})
+-- *1 Pluginmanagement
 vim.keymap.set('n', '<leader>p',
   ':!rm -r ~/.local/share/nvim<CR> :call ShowFloatMessage("You deleted .local/share/nvim")<CR>')
 vim.cmd([[
@@ -39,20 +36,50 @@ call nvim_buf_set_lines(buf, 0, -1, v:true, [a:msg])
 endfunction
 ]])
 
+
+-- #2 Options
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
+vim.o.wrap = false
+vim.o.tabstop = 2
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.g.mapleader = " "
+vim.o.cursorline = true
+vim.o.termguicolors = true
+vim.o.scrolloff = 10
+vim.o.winborder = "rounded"
+
+vim.cmd([[ set undodir=~/.vim/undo-di ]])
+vim.cmd([[ set undofile ]])
+vim.cmd([[ tnoremap <M-Esc> <C-\><C-n> ]])
+vim.cmd([[ autocmd VimEnter * hi Visual guifg=magenta ]])
+vim.cmd([[ highlight DiagnosticError guifg=BrightRed ]])
+
+
+-- #3 Naviagtion
 vim.keymap.set('n', '<C-n>', ':bn <CR>')
 vim.keymap.set('n', '<C-c>', ':bdelete <CR>')
 vim.keymap.set('n', '<M-c>', ':bdelete! <CR>')
 vim.keymap.set('n', '<F2>', ':terminal <CR>')
-vim.keymap.set('n', '<F3>', ':silent  !tmux popup -w 120 -y 0 -x 1000 <CR>')
+vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')
 vim.keymap.set('n', '<leader>s', ':e ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>|', ':w<CR>')
-vim.keymap.set('n', '<leader>q',
-  ':let save_cursor = getpos(".")<CR> :execute "normal! G" | execute "normal! V" | execute "normal! gg" | execute "normal! ="<CR> :call setpos(".", save_cursor)<CR>',
-  { noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', ':FzfLua files<CR>')
+vim.keymap.set('n', '<C-l>', ':FzfLua buffers<CR>')
+vim.keymap.set('n', '<M-l>', ':FzfLua lines<CR>')
+require("nvim-autopairs").setup {}
+
+
+-- #4 Colourschemes
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR>')
 vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR>')
+vim.cmd([[ colorscheme nordic ]])
 vim.keymap.set('n', '<F10>', ':colorscheme sorbet<CR>')
 
+
+-- #5 LSP, formating, treesitter and more
 vim.keymap.set('n', '<leader>w', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>')
 vim.keymap.set('n', '<leader>v', '<cmd>lua vim.diagnostic.goto_next()<CR>')
@@ -78,27 +105,6 @@ vim.diagnostic.config({
   },
 })
 
-vim.pack.add({
-  { src = "https://github.com/ibhagwan/fzf-lua" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-  -- { src = "https://github.com/nvim-lua/plenary.nvim" },
-  -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
-  { src = "https://github.com/neovim/nvim-lspconfig" },
-  { src = "https://github.com/vim-airline/vim-airline" },
-  { src = "https://github.com/akinsho/bufferline.nvim" },
-  { src = "https://github.com/AlexvZyl/nordic.nvim" },
-  { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-  { src = "https://github.com/nvimdev/dashboard-nvim" },
-  { src = "https://github.com/numToStr/FTerm.nvim" },
-})
-vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')
-
-require('nordic').setup({
-  theme = 'light',
-  italic = false,
-});
-vim.cmd([[ colorscheme nordic ]])
-
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -108,20 +114,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.keymap.set('n', '<C-k>', ':FzfLua files<CR>')
-vim.keymap.set('n', '<C-l>', ':FzfLua buffers<CR>')
-vim.keymap.set('n', '<M-l>', ':FzfLua lines<CR>')
-
 vim.cmd("set completeopt+=noselect")
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.lsp.enable({ 'lua_ls', 'bashls' })
-
-local bufferline = require('bufferline')
-bufferline.setup({
-  options = {
-    style_preset = bufferline.style_preset.no_italic,
-  }
-})
 
 require 'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
@@ -129,6 +124,18 @@ require 'nvim-treesitter.configs'.setup {
   incremental_selection = { enable = true }
 }
 
+vim.keymap.set('n', '<leader>q',
+  ':let save_cursor = getpos(".")<CR> :execute "normal! G" | execute "normal! V" | execute "normal! gg" | execute "normal! ="<CR> :call setpos(".", save_cursor)<CR>',
+  { noremap = true, silent = true })
+
+
+-- #6 Apparance
+local bufferline = require('bufferline')
+bufferline.setup({
+  options = {
+    style_preset = bufferline.style_preset.no_italic,
+  }
+})
 vim.keymap.set('n', '<leader>f', ':Dashboard<CR>')
 require('dashboard').setup { -- clone the git reposetory into .local share etc nvim myplugins and a directory
   config = {
