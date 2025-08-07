@@ -149,4 +149,3 @@ else
   echo "  "
 fi
 
-rm -r setup.sh
