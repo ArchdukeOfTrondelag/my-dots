@@ -23,17 +23,24 @@ git clone https://github.com/ArchdukeOfTrondelag/my-dots.git my-dots
 
 clear
 
-echo " Which profile do you wish for? ", "$GREEN"
+echo " Do you need a .config directory? "
+echo " y/N "
+read -r config
+if [ "$config" == "y" ]; then
+  mkdir ~/.config
+fi
+
+
+echo " Which profile do you wish for? "
 echo " type w for wayland "
 echo " or x for xorg/x11 "
 echo " or type wx for wayland and xorg "
-echo " it's important that you write in lower case ", "$RED"
-echo " otherwise none of them will be installed ", "$YELLOW"
+echo " it's important that you write in lower case "
+echo " otherwise none of them will be installed "
 echo " this can also be if you don't want any config installed, type nothing or something else "
 
 read -r valg
 
-mkdir ~/.config
 
 if [ "$valg" == "w" ]; then 
   mkdir ~/.config/niri
@@ -73,6 +80,13 @@ if [ "$valg" == "wx" ]; then
   cp -r my-dots/configs/rofi/* ~/.config/rofi/
 fi
 
+echo " Do you want vimrc? "
+echo " The config file for standard vim "
+echo "y/N"
+read -r vim
+if [ "$vim" == "y" ]; then
+  cp -r my-dots/configs/oldvim/.vimrc ~/
+fi
 
 mkdir ~/.config/nvim
 mkdir ~/.config/kitty
@@ -134,11 +148,12 @@ echo " tmux"
 echo " fd"
 echo " ripgrep"
 echo " bat "
+echo " nvim (the 0.12.0 build) "
 echo "  "
 echo " ************************************************* "
 echo "  "
-echo " Type y to start zsh and install the plugins ", "$YELLOW"
-echo " Ater the instalation this will take some time, so just wait ", "$RED"
+echo " Type y to start zsh and install the plugins "
+echo " Ater the instalation this will take some time, so just wait "
 echo "  "
 
 
