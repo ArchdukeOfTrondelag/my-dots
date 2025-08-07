@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd
+cd ~
 
 rm -r .config/niri
 rm -r .config/i3
