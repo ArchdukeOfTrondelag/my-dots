@@ -33,6 +33,7 @@ echo " this can also be if you don't want any config installed, type nothing or 
 
 read -r valg
 
+mkdir ~/.config
 
 if [ "$valg" == "w" ]; then 
   mkdir ~/.config/niri
