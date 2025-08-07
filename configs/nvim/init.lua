@@ -17,6 +17,28 @@ vim.cmd([[ tnoremap <M-Esc> <C-\><C-n> ]])
 vim.cmd([[ autocmd VimEnter * hi Visual guifg=magenta ]])
 vim.cmd([[ highlight DiagnosticError guifg=BrightRed ]])
 
+vim.keymap.set('n', '<leader>p',
+  ':!rm -r ~/.local/share/nvim<CR> :call ShowFloatMessage("You deleted .local/share/nvim")<CR>')
+vim.cmd([[
+function! ShowFloatMessage(msg)
+let width = 30
+let height = 1
+let buf = nvim_create_buf(v:false, v:true)
+let ui = nvim_list_uis()[0]
+let opts = {
+\ 'relative': 'editor',
+\ 'width': width,
+\ 'height': height,
+\ 'col': (ui.width / 2) - (width / 2),
+\ 'row': (ui.height / 6) - (height / 4),
+\ 'anchor': 'NW',
+\ 'style': 'minimal',
+\ }
+let win = nvim_open_win(buf, 1, opts)
+call nvim_buf_set_lines(buf, 0, -1, v:true, [a:msg])
+endfunction
+]])
+
 vim.keymap.set('n', '<C-n>', ':bn <CR>')
 vim.keymap.set('n', '<C-c>', ':bdelete <CR>')
 vim.keymap.set('n', '<M-c>', ':bdelete! <CR>')
@@ -29,13 +51,16 @@ vim.keymap.set('n', '<leader>q',
   { noremap = true, silent = true })
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR>')
 vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR>')
+vim.keymap.set('n', '<F10>', ':colorscheme sorbet<CR>')
 
 vim.keymap.set('n', '<leader>w', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>')
+vim.keymap.set('n', '<leader>v', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+vim.keymap.set('n', '<leader>b', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 
 vim.keymap.set('n', '<leader>a', function()
   local new_config = not vim.diagnostic.config().virtual_text
-  vim.diagnostic.config({  virtual_text = new_config })
+  vim.diagnostic.config({ virtual_text = new_config })
 end, { desc = 'Toggle diagnostic virtual_text' })
 
 vim.diagnostic.config({
@@ -56,23 +81,23 @@ vim.diagnostic.config({
 vim.pack.add({
   { src = "https://github.com/ibhagwan/fzf-lua" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-  { src = "https://github.com/nvim-telescope/telescope.nvim" },
-  { src = "https://github.com/nvim-lua/plenary.nvim" },
+  -- { src = "https://github.com/nvim-lua/plenary.nvim" },
+  -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
   { src = "https://github.com/vim-airline/vim-airline" },
   { src = "https://github.com/akinsho/bufferline.nvim" },
   { src = "https://github.com/AlexvZyl/nordic.nvim" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
   { src = "https://github.com/nvimdev/dashboard-nvim" },
+  { src = "https://github.com/numToStr/FTerm.nvim" },
 })
+vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')
 
-vim.cmd([[ colorscheme nordic ]])
-vim.g.nordic_italic = false
 require('nordic').setup({
-  transparent = {
-    float = true,
-  },
-})
+  theme = 'light',
+  italic = false,
+});
+vim.cmd([[ colorscheme nordic ]])
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
