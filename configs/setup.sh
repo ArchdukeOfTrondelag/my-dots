@@ -41,27 +41,27 @@ if [ "$valg" == "w" ]; then
 fi
 
 if [ "$valg" == "x" ]; then 
-    mv my-dots/configs/i3 ~/.config
-    mv my-dots/configs/polybar ~/.config
-    mv my-dots/configs/rofi ~/.config
+    cp -r my-dots/configs/i3 ~/.config
+    cp -r my-dots/configs/polybar ~/.config
+    cp -r my-dots/configs/rofi ~/.config
 fi
 
 if [ "$valg" == "wx" ]; then 
-    mv my-dots/configs/niri ~/.config
-    mv my-dots/configs/waybar ~/.config
-    mv my-dots/configs/swaylock ~/.config
+    cp -r my-dots/configs/niri ~/.config
+    cp -r my-dots/configs/waybar ~/.config
+    cp -r my-dots/configs/swaylock ~/.config
 
-    mv my-dots/configs/i3 ~/.config
-    mv my-dots/configs/polybar ~/.config
-    mv my-dots/configs/rofi ~/.config
+    cp -r my-dots/configs/i3 ~/.config
+    cp -r my-dots/configs/polybar ~/.config
+    cp -r my-dots/configs/rofi ~/.config
 fi
 
-mv my-dots/configs/nvim ~/.config
-mv my-dots/configs/kitty ~/.config
+cp -r my-dots/configs/nvim ~/.config
+cp -r my-dots/configs/kitty ~/.config
 
-mv my-dots/configs/home/.tmux.conf ./
-mv my-dots/configs/home/.rgfzf.sh ./
-mv my-dots/configs/home/.zshrc ./
+cp -r my-dots/configs/home/.tmux.conf ./
+cp -r my-dots/configs/home/.rgfzf.sh ./
+cp -r my-dots/configs/home/.zshrc ./
 
 rm -r my-dots
 
