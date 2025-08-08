@@ -8,14 +8,12 @@ vim.pack.add({
   { src = "https://github.com/AlexvZyl/nordic.nvim" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
   { src = "https://github.com/nvimdev/dashboard-nvim" },
-  { src = "https://github.com/numToStr/FTerm.nvim" },
   { src = "https://github.com/windwp/nvim-autopairs" },
   -- { src = "https://github.com/nvim-lua/plenary.nvim" },
   -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
 })
 -- *1 Pluginmanagement
-vim.keymap.set('n', '<leader>p',
-  ':!rm -r ~/.local/share/nvim<CR> :call ShowFloatMessage("You deleted .local/share/nvim")<CR>')
+vim.keymap.set('n', '<M-p>', ':!rm -r ~/.local/share/nvim<CR> :call ShowFloatMessage("You deleted .local/share/nvim")<CR>')
 vim.cmd([[
 function! ShowFloatMessage(msg)
 let width = 30
@@ -28,7 +26,6 @@ let opts = {
 \ 'height': height,
 \ 'col': (ui.width / 2) - (width / 2),
 \ 'row': (ui.height / 6) - (height / 4),
-\ 'anchor': 'NW',
 \ 'style': 'minimal',
 \ }
 let win = nvim_open_win(buf, 1, opts)
@@ -50,7 +47,7 @@ vim.o.cursorline = true
 vim.o.termguicolors = true
 vim.o.scrolloff = 10
 vim.o.winborder = "rounded"
-
+-- *2 undo and micelanious options
 vim.cmd([[ set undodir=~/.vim/undo-di ]])
 vim.cmd([[ set undofile ]])
 vim.cmd([[ tnoremap <M-Esc> <C-\><C-n> ]])
@@ -63,7 +60,6 @@ vim.keymap.set('n', '<C-n>', ':bn <CR>')
 vim.keymap.set('n', '<C-c>', ':bdelete <CR>')
 vim.keymap.set('n', '<M-c>', ':bdelete! <CR>')
 vim.keymap.set('n', '<F2>', ':terminal <CR>')
-vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')
 vim.keymap.set('n', '<leader>s', ':e ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>|', ':w<CR>')
 vim.keymap.set('n', '<C-k>', ':FzfLua files<CR>')
@@ -80,6 +76,7 @@ vim.keymap.set('n', '<F10>', ':colorscheme sorbet<CR>')
 
 
 -- #5 LSP, formating, treesitter and more
+-- *3 lsp keybinds
 vim.keymap.set('n', '<leader>w', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>')
 vim.keymap.set('n', '<leader>v', '<cmd>lua vim.diagnostic.goto_next()<CR>')
@@ -116,7 +113,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.cmd("set completeopt+=noselect")
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.lsp.enable({ 'lua_ls', 'bashls' })
+vim.lsp.enable({ 'lua_ls', 'bashls', 'nixd' })
 
 require 'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
@@ -124,18 +121,21 @@ require 'nvim-treesitter.configs'.setup {
   incremental_selection = { enable = true }
 }
 
+-- *4 indent
 vim.keymap.set('n', '<leader>q',
   ':let save_cursor = getpos(".")<CR> :execute "normal! G" | execute "normal! V" | execute "normal! gg" | execute "normal! ="<CR> :call setpos(".", save_cursor)<CR>',
   { noremap = true, silent = true })
 
 
 -- #6 Apparance
+-- *5 lines
 local bufferline = require('bufferline')
 bufferline.setup({
   options = {
     style_preset = bufferline.style_preset.no_italic,
   }
 })
+-- *6 Dashboard
 vim.keymap.set('n', '<leader>f', ':Dashboard<CR>')
 require('dashboard').setup { -- clone the git reposetory into .local share etc nvim myplugins and a directory
   config = {
