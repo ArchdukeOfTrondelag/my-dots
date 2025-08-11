@@ -2,14 +2,8 @@
 
 cd ~
 
-rm -r .config/niri
-rm -r .config/i3
-rm -r .config/nvim
-rm -r .config/waybar
-rm -r .config/polybar
+rm -r .config/nvim/init.lua
 rm -r .config/kitty
-rm -r .config/rofi
-rm -r .config/swaylock
 rm .tmux.conf
 rm .zshrc
 rm -r .zsh
@@ -43,6 +37,9 @@ read -r valg
 
 
 if [ "$valg" == "w" ]; then 
+rm -r .config/niri
+rm -r .config/waybar
+rm -r .config/swaylock
   mkdir ~/.config/niri
   mkdir ~/.config/waybar
   mkdir ~/.config/swaylock
@@ -53,6 +50,9 @@ if [ "$valg" == "w" ]; then
 fi
 
 if [ "$valg" == "x" ]; then 
+rm -r .config/i3
+rm -r .config/polybar
+rm -r .config/rofi
   mkdir ~/.config/i3
   mkdir ~/.config/polybar
   mkdir ~/.config/rofi
@@ -63,6 +63,12 @@ if [ "$valg" == "x" ]; then
 fi
 
 if [ "$valg" == "wx" ]; then 
+rm -r .config/niri
+rm -r .config/waybar
+rm -r .config/swaylock
+rm -r .config/i3
+rm -r .config/polybar
+rm -r .config/rofi
   mkdir ~/.config/niri
   mkdir ~/.config/waybar
   mkdir ~/.config/swaylock
