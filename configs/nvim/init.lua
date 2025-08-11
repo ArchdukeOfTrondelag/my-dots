@@ -39,7 +39,6 @@ endfunction
 -- #2 Options
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.signcolumn = "yes"
 vim.o.wrap = false
 vim.o.tabstop = 2
 vim.o.expandtab = true
@@ -69,9 +68,9 @@ vim.keymap.set('n', '<C-k>', ':FzfLua files<CR>')
 vim.keymap.set('n', '<C-l>', ':FzfLua buffers<CR>')
 vim.keymap.set('n', '<M-l>', ':FzfLua lines<CR>')
 require("nvim-autopairs").setup {}
-local modus = {'n', 'i', 'v', 'x', 's', 'o', 't', 'l'}
+local modus = {'n', 'i', 'v', 'x', 's', 'o', 'l'}
 vim.keymap.set(modus, '<Right>', ':w<CR>')
-vim.keymap.set(modus, '<Left>', ':term<CR>')
+vim.keymap.set(modus, '<Left>', ':q<CR>')
 vim.keymap.set(modus, '<Up>', ':FzfLua files<CR>')
 vim.keymap.set(modus, '<Down>', ':Lex<CR>')
 
@@ -79,7 +78,13 @@ vim.keymap.set(modus, '<Down>', ':Lex<CR>')
 -- #4 Colourschemes
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR>')
 vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR>')
-vim.cmd([[ colorscheme zaibatsu ]])
+vim.cmd([[ colorscheme nordic ]])
+vim.cmd [[
+highlight Normal guibg=none
+highlight NonText guibg=none
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+]]
 
 
 -- #5 LSP, formating, treesitter and more
@@ -169,7 +174,7 @@ require('dashboard').setup { -- clone the git reposetory into .local share etc n
     },
     footer = {
       " ",
-      "Tinkpadx200 BTW",
+      " Neovim BTW",
     }
   }
 }
