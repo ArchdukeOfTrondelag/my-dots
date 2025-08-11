@@ -36,13 +36,15 @@ filetype indent on              "indent
 let g:airline#extensions#tabline#enabled = 1           "sets the better statusbar
 
 "keybinds/maps
-let mapleader = "<Space>"                                   "set leader key to space
-nnoremap <C-p> :Files<CR>
-nnoremap <C-o> :!fzf --preview 'bat --color=always {}'<CR>
-nnoremap <C-s> :w<CR>                                       "ctrol s saves the file
-nnoremap <C-n> :bn<CR>                                      "control n goes to next open buffer (a opened file with control p opens as a buffer, it doesnt close your current file)
-nnoremap <C-c> :bdelete<CR>                                 "control c close current buffer
-nnoremap <C-a> :Startify<CR>
+nnoremap <space>k :Files<CR>
+nnoremap <space>n :bn<CR>
+nnoremap <space>c :bdelete<CR>
+
+nnoremap <Up> :Files ~/<CR>
+nnoremap <Down> :Lex<CR>
+nnoremap <Left> :q<CR>
+nnoremap <Right> :w<CR>
+
 
 "Plug manager   install the plugin manager
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
