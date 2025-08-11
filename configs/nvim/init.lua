@@ -71,7 +71,7 @@ vim.keymap.set('n', '<M-l>', ':FzfLua lines<CR>')
 require("nvim-autopairs").setup {}
 local modus = {'n', 'i', 'v', 'x', 's', 'o', 't', 'l'}
 vim.keymap.set(modus, '<Right>', ':w<CR>')
-vim.keymap.set(modus, '<Left>', ':so<CR>')
+vim.keymap.set(modus, '<Left>', ':term<CR>')
 vim.keymap.set(modus, '<Up>', ':FzfLua files<CR>')
 vim.keymap.set(modus, '<Down>', ':Lex<CR>')
 
@@ -148,8 +148,8 @@ vim.keymap.set('n', '<leader>f', ':Dashboard<CR>')
 require('dashboard').setup { -- clone the git reposetory into .local share etc nvim myplugins and a directory
   config = {
     header = {
-
       "NixOS BTW",
+      " ",
     },
     shortcut = {
       {
@@ -168,6 +168,7 @@ require('dashboard').setup { -- clone the git reposetory into .local share etc n
       },
     },
     footer = {
+      " ",
       "Tinkpadx200 BTW",
     }
   }
