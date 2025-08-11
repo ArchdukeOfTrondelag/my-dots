@@ -7,16 +7,22 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 	tmux a -t default || exec tmux new -s default && exit;
 fi
 
-alias dc='source ~/.rgfzf.sh cd'
-alias ff='source ~/.rgfzf.sh find'
-alias se='source ~/.rgfzf.sh open'
-alias co='source ~/.rgfzf.sh co'
-alias md='source ~/.rgfzf.sh md'
+
+alias rgf='source ~/.rgfzf.sh'
+alias c='source ~/.rgfzf.sh cd'
+alias s='source ~/.rgfzf.sh find'
+alias f='source ~/.rgfzf.sh open'
+alias sf='source ~/.rgfzf.sh co'
+alias mk='source ~/.rgfzf.sh md'
 alias mf='source ~/.rgfzf.sh mf'
-alias cf='source ~/.rgfzf.sh df'
-alias mm='source ~/.rgfzf.sh mm'
+alias tf='source ~/.rgfzf.sh df'
+alias md='source ~/.rgfzf.sh mm'
 alias fm='source ~/.rgfzf.sh fm'
-alias cf='source ~/.rgfzf.sh fc'
+alias cm='source ~/.rgfzf.sh fc'
+
+alias font='sudo setfont lat0-16'
+alias font1='sudo setfont -d'
+alias font2='sudo setfont -d iso07u-16'
 
 # aliases
 # nixos build

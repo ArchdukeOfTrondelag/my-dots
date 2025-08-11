@@ -15,11 +15,7 @@ open_1() {
 }
 
 help_1() {
-  echo "Valid options are: "
-  echo "find (to find a file based on a word)"
-  echo "cd (to open chocen directory)"
-  echo "open (to open selected file)"
-  return 1
+  bat ~/.rgfzf.sh
 }
 
 co_1() {
