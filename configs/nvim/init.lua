@@ -1,4 +1,5 @@
 -- #1 Plugins
+vim.o.termguicolors = true
 vim.pack.add({
   { src = "https://github.com/ibhagwan/fzf-lua" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -9,6 +10,7 @@ vim.pack.add({
   { src = "https://github.com/nvim-tree/nvim-web-devicons" }, -- skal ordne egen 
   { src = "https://github.com/nvimdev/dashboard-nvim" }, -- skal ordne egen
   { src = "https://github.com/windwp/nvim-autopairs" },
+  { src = "https://github.com/chentoast/marks.nvim" },
 
   -- { src = "https://github.com/nvim-lua/plenary.nvim" },
   -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
@@ -45,7 +47,6 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.g.mapleader = " "
 vim.o.cursorline = true
-vim.o.termguicolors = true
 vim.o.scrolloff = 8
 vim.o.winborder = "rounded"
 -- *2 undo and micelanious options
@@ -54,27 +55,38 @@ vim.cmd([[ set undofile ]])
 vim.cmd([[ tnoremap <M-Esc> <C-\><C-n> ]])
 vim.cmd([[ autocmd VimEnter * hi Visual guifg=magenta ]])
 vim.cmd([[ highlight DiagnosticError guifg=BrightRed ]])
+vim.o.list = true
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("yank-highlight", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
 
 -- #3 Naviagtion
 vim.keymap.set('n', '<C-n>', ':bn <CR>')
+vim.keymap.set('n', '<C-Right>', ':bn <CR>')
+vim.keymap.set('n', '<C-Left>', ':bp <CR>')
 vim.keymap.set('n', '<C-c>', ':bdelete <CR>')
-vim.keymap.set('n', '<leader>1', ':q<CR>')
 vim.keymap.set('n', '<M-c>', ':bdelete! <CR>')
 vim.keymap.set('n', '<F2>', ':terminal <CR>')
 vim.keymap.set('n', '<leader>s', ':e ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>|', ':w<CR>')
+vim.keymap.set('n', '<leader>1', ':q<CR>')
 vim.keymap.set('n', '<C-k>', ':FzfLua files<CR>')
 vim.keymap.set('n', '<C-l>', ':FzfLua buffers<CR>')
 vim.keymap.set('n', '<M-l>', ':FzfLua lines<CR>')
 require("nvim-autopairs").setup {}
+require("marks").setup()
 local modus = {'n', 'i', 'v', 'x', 's', 'o', 'l'}
 vim.keymap.set(modus, '<Right>', ':w<CR>')
 vim.keymap.set(modus, '<Left>', ':q<CR>')
 vim.keymap.set(modus, '<Up>', ':FzfLua files<CR>')
 vim.keymap.set(modus, '<Down>', ':Lex<CR>')
 
---
+
 -- #4 Colourschemes
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR>')
 vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR>')
@@ -151,7 +163,7 @@ bufferline.setup({
 
 -- *6 Dashboard
 vim.keymap.set('n', '<leader>f', ':Dashboard<CR>')
-require('dashboard').setup { -- clone the git reposetory into .local share etc nvim myplugins and a directory
+require('dashboard').setup {
   config = {
     header = {
       "NixOS BTW",
@@ -175,7 +187,7 @@ require('dashboard').setup { -- clone the git reposetory into .local share etc n
     },
     footer = {
       " ",
-      " Neovim BTW",
+      "Neovim BTW",
     }
   }
 }
