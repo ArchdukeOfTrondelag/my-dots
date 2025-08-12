@@ -79,6 +79,7 @@ vim.keymap.set(modus, '<Down>', ':Lex<CR>')
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR>')
 vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR>')
 vim.cmd([[ colorscheme nordic ]])
+-- vim.cmd([[ colorscheme zaibatsu ]])
 vim.cmd [[
 highlight Normal guibg=none
 highlight NonText guibg=none
