@@ -5,7 +5,7 @@ set t_Co=16                     "set the color rate
 set autoindent                  "set indent after enter
 set expandtab                   "set space insted of tab when pressing tab
 set shiftwidth=2                "set spaces tab does
-set tabstop=4                   "set max number of tabs
+set tabstop=2                   "set max number of tabs
 set number                      "set number on side
 set relativenumber              "set relative number compared to the one you are currently on
 set history=100                 "set max history to 100
@@ -52,7 +52,6 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-"List plugins  list the plugins you want here, check on github for how
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'mhinz/vim-startify'                            "the startscreen for vim
@@ -63,8 +62,8 @@ Plug 'LnL7/vim-nix'                                  "nix syntax
 Plug 'dense-analysis/ale'                            "lsp groundwork
 Plug 'vim-airline/vim-airline'                       "the improved statusbar
 Plug 'nordtheme/vim'
-
 call plug#end()
 
-
 colorscheme nord                "sets colourscheme to elflord
+highlight Visual ctermfg=Magenta
+highlight Visual ctermbg=Black
