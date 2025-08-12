@@ -24,9 +24,8 @@ set ruler                       "shows where the cursor it in colom and line
 set laststatus=0                "set statusbar to 0
 set noerrorbells                "disables the error bell
 set smartindent                 "improve indent
-colorscheme sorbet              "sets colourscheme to elflord
 set background=dark             "tells vim background colour for it to give good contrast
-set undodir=~/.vim/undo-di      "set where the undo file is stored
+set undodir=~/.vim/undo-dd      "set where the undo file is stored
 set undofile                    "sets a file where undos are saved, so if i undo and quit i can redo later
 syntax on                       "enables syntax
 syntax enable                   "same
@@ -40,7 +39,7 @@ nnoremap <space>k :Files<CR>
 nnoremap <space>n :bn<CR>
 nnoremap <space>c :bdelete<CR>
 
-nnoremap <Up> :Files ~/<CR>
+nnoremap <Up> :FZF ~/<CR>
 nnoremap <Down> :Lex<CR>
 nnoremap <Left> :q<CR>
 nnoremap <Right> :w<CR>
@@ -63,6 +62,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'LnL7/vim-nix'                                  "nix syntax
 Plug 'dense-analysis/ale'                            "lsp groundwork
 Plug 'vim-airline/vim-airline'                       "the improved statusbar
+Plug 'nordtheme/vim'
 
 call plug#end()
 
+
+colorscheme nord                "sets colourscheme to elflord
