@@ -2,12 +2,12 @@
 
 cd ~
 
-rm -r .config/nvim/init.lua
-rm -r .config/kitty
+rm -fr .config/nvim/init.lua
+rm -fr .config/kitty
 rm .tmux.conf
 rm .zshrc
-rm -r .zsh
-rm -r .zplug
+rm -fr .zsh
+rm -fr .zplug
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
@@ -26,6 +26,9 @@ if [ "$config" == "y" ]; then
 fi
 
 
+
+echo " All directories and files related to whats affected here will be removed "
+echo " "
 echo " Which profile do you wish for? "
 echo " type w for wayland "
 echo " or x for xorg/x11 "
@@ -38,38 +41,38 @@ read -r valg
 
 
 if [ "$valg" == "w" ]; then 
-  rm -r .config/niri
-  rm -r .config/waybar
-  rm -r .config/swaylock
+  rm -fr .config/niri
+  rm -fr .config/waybar
+  rm -fr .config/swaylock
   mkdir ~/.config/niri
   mkdir ~/.config/waybar
   mkdir ~/.config/swaylock
 
-  cp -r my-dots/configs/niri/* ~/.config/niri/
-  cp -r my-dots/configs/waybar/* ~/.config/waybar/
-  cp -r my-dots/configs/swaylock/* ~/.config/swaylock/
+  cp -fr my-dots/configs/niri/* ~/.config/niri/
+  cp -fr my-dots/configs/waybar/* ~/.config/waybar/
+  cp -fr my-dots/configs/swaylock/* ~/.config/swaylock/
 fi
 
 if [ "$valg" == "x" ]; then 
-  rm -r .config/i3
-  rm -r .config/polybar
-  rm -r .config/rofi
+  rm -fr .config/i3
+  rm -fr .config/polybar
+  rm -fr .config/rofi
   mkdir ~/.config/i3
   mkdir ~/.config/polybar
   mkdir ~/.config/rofi
 
-  cp -r my-dots/configs/i3/* ~/.config/i3/
-  cp -r my-dots/configs/polybar/* ~/.config/polybar/
-  cp -r my-dots/configs/rofi/* ~/.config/rofi/
+  cp -fr my-dots/configs/i3/* ~/.config/i3/
+  cp -fr my-dots/configs/polybar/* ~/.config/polybar/
+  cp -fr my-dots/configs/rofi/* ~/.config/rofi/
 fi
 
 if [ "$valg" == "wx" ]; then 
-  rm -r .config/niri
-  rm -r .config/waybar
-  rm -r .config/swaylock
-  rm -r .config/i3
-  rm -r .config/polybar
-  rm -r .config/rofi
+  rm -fr .config/niri
+  rm -fr .config/waybar
+  rm -fr .config/swaylock
+  rm -fr .config/i3
+  rm -fr .config/polybar
+  rm -fr .config/rofi
   mkdir ~/.config/niri
   mkdir ~/.config/waybar
   mkdir ~/.config/swaylock
@@ -105,7 +108,7 @@ cp -r my-dots/configs/home/.tmux.conf ./
 cp -r my-dots/configs/home/.rgfzf.sh ./
 cp -r my-dots/configs/home/.zshrc ./
 
-rm -r my-dots
+rm -fr my-dots
 
 clear
 
