@@ -1,7 +1,5 @@
 
 "configs
-set foldmethod=marker           "set folds between {{{ and }}}
-set t_Co=16                     "set the color rate
 set autoindent                  "set indent after enter
 set expandtab                   "set space insted of tab when pressing tab
 set shiftwidth=2                "set spaces tab does
@@ -10,7 +8,6 @@ set number                      "set number on side
 set relativenumber              "set relative number compared to the one you are currently on
 set history=100                 "set max history to 100
 set hlsearch                    "set hilight when searching
-set nocompatible                "set compatibility with other vi/vim forks
 set showcmd                     "show command on bottom
 set showmatch                   "jump to matching bracket you are on
 set showmode                    "shows which mode you are in
@@ -19,16 +16,14 @@ set wildmenu                    "makes autocomplete menu
 set cursorline                  "makes line on current line
 set nowrap                      "disable that lines wrap around when at end of screen
 set incsearch                   "show the thing you search
-set wildmode=list:longest       "set wildmenu to be the longest it can
 set ruler                       "shows where the cursor it in colom and line
 set laststatus=0                "set statusbar to 0
 set noerrorbells                "disables the error bell
 set smartindent                 "improve indent
-set background=dark             "tells vim background colour for it to give good contrast
+set background=light            "tells vim background colour for it to give good contrast
 set undodir=~/.vim/undo-dd      "set where the undo file is stored
 set undofile                    "sets a file where undos are saved, so if i undo and quit i can redo later
 syntax on                       "enables syntax
-syntax enable                   "same
 filetype on                     "vim detects what file you are on
 filetype plugin on              "enable plugins
 filetype indent on              "indent
@@ -62,8 +57,13 @@ Plug 'LnL7/vim-nix'                                  "nix syntax
 Plug 'dense-analysis/ale'                            "lsp groundwork
 Plug 'vim-airline/vim-airline'                       "the improved statusbar
 Plug 'nordtheme/vim'
+Plug 'MikeDacre/tmux-zsh-vim-titles'
 call plug#end()
 
 colorscheme nord                "sets colourscheme to elflord
 highlight Visual ctermfg=Magenta
 highlight Visual ctermbg=Black
+"let g:tzvt_vim_force_tmux_title_change = 1
+"let g:tzvt_vim_title_prefix = 'v:'
+let g:tzvt_tzvt_vim_include_path = 0
+
