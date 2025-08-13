@@ -9,6 +9,7 @@ rm .zshrc
 rm -r .zsh
 rm -r .zplug
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 mkdir -p ".zsh"
 git clone https://github.com/sindresorhus/pure.git ".zsh/pure"
@@ -37,9 +38,9 @@ read -r valg
 
 
 if [ "$valg" == "w" ]; then 
-rm -r .config/niri
-rm -r .config/waybar
-rm -r .config/swaylock
+  rm -r .config/niri
+  rm -r .config/waybar
+  rm -r .config/swaylock
   mkdir ~/.config/niri
   mkdir ~/.config/waybar
   mkdir ~/.config/swaylock
@@ -50,9 +51,9 @@ rm -r .config/swaylock
 fi
 
 if [ "$valg" == "x" ]; then 
-rm -r .config/i3
-rm -r .config/polybar
-rm -r .config/rofi
+  rm -r .config/i3
+  rm -r .config/polybar
+  rm -r .config/rofi
   mkdir ~/.config/i3
   mkdir ~/.config/polybar
   mkdir ~/.config/rofi
@@ -63,12 +64,12 @@ rm -r .config/rofi
 fi
 
 if [ "$valg" == "wx" ]; then 
-rm -r .config/niri
-rm -r .config/waybar
-rm -r .config/swaylock
-rm -r .config/i3
-rm -r .config/polybar
-rm -r .config/rofi
+  rm -r .config/niri
+  rm -r .config/waybar
+  rm -r .config/swaylock
+  rm -r .config/i3
+  rm -r .config/polybar
+  rm -r .config/rofi
   mkdir ~/.config/niri
   mkdir ~/.config/waybar
   mkdir ~/.config/swaylock
