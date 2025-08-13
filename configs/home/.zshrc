@@ -23,6 +23,7 @@ alias cm='source ~/.rgfzf.sh fc'
 alias font='sudo setfont lat0-16'
 alias font1='sudo setfont -d'
 alias font2='sudo setfont -d iso07u-16'
+alias nvimf='nvim -c "FzfLua files"'
 
 # aliases
 # nixos build
@@ -41,6 +42,7 @@ zplug 'Aloxaf/fzf-tab'
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-autosuggestions'
+zplug 'MikeDacre/tmux-zsh-vim-titles'
 
 if ! zplug check --verbose; then
     printf "Install? [Y/n]: "
@@ -50,3 +52,8 @@ if ! zplug check --verbose; then
 fi
 zplug load --verbose
 echo; clear
+
+
+export EDITOR='nvim'
+export VISUAL=$EDITOR
+export $tzvt_set_tmux_window_status=true
