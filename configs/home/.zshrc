@@ -24,6 +24,7 @@ alias font='sudo setfont lat0-16'
 alias font1='sudo setfont -d'
 alias font2='sudo setfont -d iso07u-16'
 alias nvimf='nvim -c "FzfLua files"'
+alias vimf='vim -c Files'
 
 # aliases
 # nixos build
