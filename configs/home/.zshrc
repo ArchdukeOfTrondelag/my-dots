@@ -8,17 +8,11 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 
-alias rgf='source ~/.rgfzf.sh'
-alias c='source ~/.rgfzf.sh cd'
-alias s='source ~/.rgfzf.sh find'
-alias f='source ~/.rgfzf.sh open'
-alias sf='source ~/.rgfzf.sh co'
-alias mk='source ~/.rgfzf.sh md'
-alias mf='source ~/.rgfzf.sh mf'
-alias tf='source ~/.rgfzf.sh df'
-alias md='source ~/.rgfzf.sh mm'
-alias fm='source ~/.rgfzf.sh fm'
-alias cm='source ~/.rgfzf.sh fc'
+alias rgf='source ~/.rgfzf.sh && main '
+alias c='source ~/.rgfzf.sh && main cd'
+alias s='source ~/.rgfzf.sh && main find'
+alias f='source ~/.rgfzf.sh && main open'
+alias rfc='source ~/.rgfzf.sh && main cmd '
 
 alias font='sudo setfont lat0-16'
 alias font1='sudo setfont -d'
