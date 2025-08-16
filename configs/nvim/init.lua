@@ -49,11 +49,11 @@ vim.g.mapleader = " "
 vim.o.cursorline = true
 vim.o.scrolloff = 8
 vim.o.winborder = "rounded"
+
 -- *2 undo and micelanious options
 vim.cmd([[ set undodir=~/.vim/undo-di ]])
 vim.cmd([[ set undofile ]])
 vim.cmd([[ tnoremap <M-Esc> <C-\><C-n> ]])
-vim.cmd([[ autocmd VimEnter * hi Visual guifg=magenta ]])
 vim.cmd([[ highlight DiagnosticError guifg=BrightRed ]])
 vim.o.list = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -85,11 +85,12 @@ vim.keymap.set(modus, '<Right>', ':w<CR>')
 vim.keymap.set(modus, '<Left>', ':q<CR>')
 vim.keymap.set(modus, '<Up>', ':FzfLua files<CR>')
 vim.keymap.set(modus, '<Down>', ':Lex<CR>')
+vim.keymap.set(modus, '<C-y>', '"*y')
 
 
 -- #4 Colourschemes
-vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR>')
-vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR>')
+vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR> <cmd>hi Visual guifg=magenta<CR>')
+vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR> <cmd>hi Visual guifg=magenta<CR>')
 vim.cmd([[ colorscheme nordic ]])
 -- vim.cmd([[ colorscheme zaibatsu ]])
 vim.cmd [[
@@ -98,6 +99,7 @@ highlight NonText guibg=none
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 ]]
+vim.cmd([[ hi Visual guifg=magenta ]])
 
 
 -- #5 LSP, formating, treesitter and more
