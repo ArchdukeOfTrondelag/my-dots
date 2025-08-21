@@ -1,5 +1,4 @@
 -- #1 Plugins
-vim.o.termguicolors = true
 vim.pack.add({
   { src = "https://github.com/ibhagwan/fzf-lua" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -8,10 +7,10 @@ vim.pack.add({
   { src = "https://github.com/akinsho/bufferline.nvim" },
   { src = "https://github.com/AlexvZyl/nordic.nvim" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" }, -- skal ordne egen 
-  { src = "https://github.com/nvimdev/dashboard-nvim" }, -- skal ordne egen
   { src = "https://github.com/windwp/nvim-autopairs" },
   { src = "https://github.com/chentoast/marks.nvim" },
-
+  { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
+  { src = "https://github.com/Krak9n/mary.nvim" },
   -- { src = "https://github.com/nvim-lua/plenary.nvim" },
   -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
 })
@@ -63,6 +62,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+require("ibl").setup()
+require('mary').setup()
 
 
 -- #3 Naviagtion
@@ -85,7 +86,7 @@ vim.keymap.set(modus, '<Right>', ':w<CR>')
 vim.keymap.set(modus, '<Left>', ':q<CR>')
 vim.keymap.set(modus, '<Up>', ':FzfLua files<CR>')
 vim.keymap.set(modus, '<Down>', ':Lex<CR>')
-vim.keymap.set(modus, '<C-y>', '"*y')
+vim.keymap.set(modus, '<M-y>', '"*y')
 
 
 -- #4 Colourschemes
@@ -149,9 +150,7 @@ require 'nvim-treesitter.configs'.setup {
 }
 
 -- *4 indent
-vim.keymap.set('n', '<leader>q',
-  ':let save_cursor = getpos(".")<CR> :execute "normal! G" | execute "normal! V" | execute "normal! gg" | execute "normal! ="<CR> :call setpos(".", save_cursor)<CR>',
-  { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>q', "mqG=gg'q")
 
 
 -- #6 Apparance
@@ -162,34 +161,3 @@ bufferline.setup({
     style_preset = bufferline.style_preset.no_italic,
   }
 })
-
--- *6 Dashboard
-vim.keymap.set('n', '<leader>f', ':Dashboard<CR>')
-require('dashboard').setup {
-  config = {
-    header = {
-      "NixOS BTW",
-      " ",
-    },
-    shortcut = {
-      {
-        icon = ':3 ',
-        desc = 'Files ',
-        group = 'Label',
-        action = 'FzfLua files',
-        key = 'f',
-      },
-
-      {
-        desc = 'Quit ',
-        group = 'Label',
-        action = 'q',
-        key = 'q',
-      },
-    },
-    footer = {
-      " ",
-      "Neovim BTW",
-    }
-  }
-}
