@@ -68,3 +68,4 @@ highlight Visual ctermbg=Black
 "let g:tzvt_vim_title_prefix = 'v:'
 let g:tzvt_tzvt_vim_include_path = 0
 let g:highlightedyank_highlight_duration = 125
+nnoremap <space>q mqG=gg'q
