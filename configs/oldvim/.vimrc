@@ -58,6 +58,7 @@ Plug 'dense-analysis/ale'                            "lsp groundwork
 Plug 'vim-airline/vim-airline'                       "the improved statusbar
 Plug 'nordtheme/vim'
 Plug 'MikeDacre/tmux-zsh-vim-titles'
+Plug 'machakann/vim-highlightedyank'
 call plug#end()
 
 colorscheme nord                "sets colourscheme to elflord
@@ -66,4 +67,4 @@ highlight Visual ctermbg=Black
 "let g:tzvt_vim_force_tmux_title_change = 1
 "let g:tzvt_vim_title_prefix = 'v:'
 let g:tzvt_tzvt_vim_include_path = 0
-
+let g:highlightedyank_highlight_duration = 125
