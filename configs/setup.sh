@@ -101,6 +101,9 @@ fi
 mkdir ~/.config/nvim
 mkdir ~/.config/kitty
 
+co -r my-dots/configs/home/.rottedfetch ./
+chnod +x .rottedfetch 
+
 cp -r my-dots/configs/nvim/* ~/.config/nvim/
 cp -r my-dots/configs/kitty/* ~/.config/kitty/
 
