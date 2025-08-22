@@ -92,15 +92,18 @@ vim.keymap.set(modus, '<M-y>', '"*y')
 -- #4 Colourschemes
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR> <cmd>hi Visual guifg=magenta<CR>')
 vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR> <cmd>hi Visual guifg=magenta<CR>')
-vim.cmd([[ colorscheme nordic ]])
--- vim.cmd([[ colorscheme zaibatsu ]])
+-- vim.cmd([[ colorscheme nordic ]])
+vim.cmd([[ colorscheme zaibatsu ]])
 vim.cmd [[
-highlight Normal guibg=none
-highlight NonText guibg=none
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
+highlight LineNr ctermfg=12
+highlight NormalFloat ctermbg=0
+highlight Visual ctermfg=13
+highlight Visual ctermbg=0
+highlight WarningMsg ctermfg=13
+highlight ErrorMsg ctermfg=14
 ]]
-vim.cmd([[ hi Visual guifg=magenta ]])
 
 
 -- #5 LSP, formating, treesitter and more
@@ -155,9 +158,4 @@ vim.keymap.set('n', '<leader>q', "mqG=gg'q")
 
 -- #6 Apparance
 -- *5 lines
-local bufferline = require('bufferline')
-bufferline.setup({
-  options = {
-    style_preset = bufferline.style_preset.no_italic,
-  }
-})
+require("bufferline").setup()
