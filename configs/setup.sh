@@ -107,6 +107,7 @@ cp -r my-dots/configs/kitty/* ~/.config/kitty/
 cp -r my-dots/configs/home/.tmux.conf ./
 cp -r my-dots/configs/home/.rgfzf.sh ./
 cp -r my-dots/configs/home/.zshrc ./
+cp /r my-dots/configs/home/.rottedfetch ./
 
 rm -fr my-dots
 
