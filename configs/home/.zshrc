@@ -7,7 +7,7 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 	tmux a -t default || exec tmux new -s default && exit;
 fi
 
-
+alias fetch='~/.rottedfetch'
 alias rgf='source ~/.rgfzf.sh && main '
 alias c='source ~/.rgfzf.sh && main cd'
 alias s='source ~/.rgfzf.sh && main find'
