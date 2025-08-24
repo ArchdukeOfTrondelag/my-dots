@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+echo " This will remove all files affected by this script you alreddy have "
+echo " Procede Y/n <type n to end> "
+read -r svar1
+
+if [ "$svar1" == "n" ]; then
+  end
+else
 
 cd ~
 
@@ -177,4 +184,4 @@ else
   echo " Restart zsh manually to start the plugin instalation "
   echo "  "
 fi
-
+fi
