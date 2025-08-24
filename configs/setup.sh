@@ -108,7 +108,7 @@ fi
 mkdir ~/.config/nvim
 mkdir ~/.config/kitty
 
-co -r my-dots/configs/home/.rottedfetch ./
+cp -r my-dots/configs/home/.rottedfetch ./
 chmod +x .rottedfetch 
 
 cp -r my-dots/configs/nvim/* ~/.config/nvim/
