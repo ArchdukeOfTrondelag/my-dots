@@ -103,6 +103,7 @@ highlight Visual ctermfg=13
 highlight Visual ctermbg=0
 highlight WarningMsg ctermfg=13
 highlight ErrorMsg ctermfg=14
+highlight String ctermfg=15
 ]]
 
 
