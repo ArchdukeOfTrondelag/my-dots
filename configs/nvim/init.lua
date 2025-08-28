@@ -104,6 +104,7 @@ highlight Visual ctermbg=0
 highlight WarningMsg ctermfg=13
 highlight ErrorMsg ctermfg=14
 highlight String ctermfg=15
+highlight shQuote ctermfg=15
 ]]
 
 
@@ -145,7 +146,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.cmd("set completeopt+=noselect")
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.lsp.enable({ 'lua_ls', 'bashls', 'nixd' })
+vim.lsp.enable({ 'lua_ls', 'bashls', 'rust_analyzer' })
 
 require 'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
