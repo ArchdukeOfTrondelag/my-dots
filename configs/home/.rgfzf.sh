@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+
+screen_1() {
+  ord=$(fzf-tmux -p 35,4 --reverse --prompt="PictureName: " --print-query | awk 'NR==1' )
+  sudo fbgrab ~/nix/Bilder/"$ord".png > /dev/null 2>&1
+}
+
+
 fnd_1() {
   ord=$(fzf-tmux -p 35,4 --reverse --prompt="Searchword: " --print-query | awk 'NR==1' )
   rg -l --hidden "$ord" | fzf-tmux -p 80%,80% --delimiter : --preview "bat --color=always  --highlight-line=1 {1} "| xargs nvim
@@ -111,6 +118,9 @@ cmd_1() {
 main () {
 
   case "$1" in
+    screen)
+      screen_1
+      ;;
     bat)
       bat_1
       ;;
