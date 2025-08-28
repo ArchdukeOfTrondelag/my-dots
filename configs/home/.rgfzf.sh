@@ -99,19 +99,20 @@ bat_1() {
 
 cmd_1() {
   echo " "
-  echo " find  - finds file based on prmpt word "
-  echo " cd    - fuzzy find and change directory "
-  echo " open  - finds and opens a file in nvim "
-  echo " co    - fuzzy find directory and make file in that directory with nvim "
-  echo " md    - make directory in input directory and cd into it "
-  echo " df    - cd into directory and make file, but doesnt open "
-  echo " ls    - fuzzy find directory and ls, lists the content "
-  echo " mf    - makes file in given directory and you remain in your directory "
-  echo " mm    - moves picked directory 1 to picked directory 2 "
-  echo " fm    - moves file into picked directory "
-  echo " fc    - copes file into picked directory "
-  echo " fd    - copes directory into picked directory "
-  echo " bat   - opens file in bat "
+  echo " find    - finds file based on prmpt word "
+  echo " cd      - fuzzy find and change directory "
+  echo " open    - finds and opens a file in nvim "
+  echo " co      - fuzzy find directory and make file in that directory with nvim "
+  echo " md      - make directory in input directory and cd into it "
+  echo " df      - cd into directory and make file, but doesnt open "
+  echo " ls      - fuzzy find directory and ls, lists the content "
+  echo " mf      - makes file in given directory and you remain in your directory "
+  echo " mm      - moves picked directory 1 to picked directory 2 "
+  echo " fm      - moves file into picked directory "
+  echo " fc      - copes file into picked directory "
+  echo " fd      - copes directory into picked directory "
+  echo " bat     - opens file in bat "
+  echo " screen  - takes screenshot and names it with the user input"
 }
 
 
