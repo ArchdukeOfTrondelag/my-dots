@@ -10,4 +10,6 @@ I will try to document it and give usefull comments
 Please tell me if somethings missing or you have improvements
 This is a side project, so give your thoughts as you wish
 
+I have my own small file manager script that uses fzf as a ui to do stuff, look at the commands with rfc or rgf pick
+
 I would like to credit Krak9n for the [fetch](https://github.com/Krak9n/rottedfetch). There is an alias, fetch. try it. 
