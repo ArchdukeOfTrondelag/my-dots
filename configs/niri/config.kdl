@@ -62,7 +62,7 @@ layout {
 prefer-no-csd
 spawn-at-startup "clipse -listen" 
 spawn-at-startup "swww-daemon" 
-spawn-at-startup "swww img ~/Bilder/RAN.png "
+spawn-at-startup "swww" "img" "Bilder/RAN.png"
 spawn-at-startup "waybar"
 screenshot-path "~/Bilder/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
@@ -73,7 +73,7 @@ animations {
 }
 binds {
 	Mod+Shift+S { show-hotkey-overlay; }
-	Mod+Return { spawn "kitty"; }
+	Mod+Return { spawn "foot"; }
 	Alt+Shift+E { spawn "swaylock"; }
 	Mod+D { spawn "fuzzel"; }
 	Mod+Tab { toggle-overview; }
