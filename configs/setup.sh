@@ -10,7 +10,6 @@ else
 cd ~
 
 rm -fr .config/nvim/init.lua
-rm -fr .config/kitty
 rm .tmux.conf
 rm .zshrc
 rm -fr .zsh
@@ -106,13 +105,11 @@ if [ "$vim" == "y" ]; then
 fi
 
 mkdir ~/.config/nvim
-mkdir ~/.config/kitty
 
 cp -r my-dots/configs/home/.rottedfetch ./.rottedfetch
 chmod +x .rottedfetch 
 
-cp -r my-dots/configs/nvim/* ~/.config/nvim/
-cp -r my-dots/configs/kitty/* ~/.config/kitty/
+cp -r my-dots/configs/nvim/init.lua ~/.config/nvim/
 
 cp -r my-dots/configs/home/.tmux.conf ./
 cp -r my-dots/configs/home/.rgfzf.sh ./
