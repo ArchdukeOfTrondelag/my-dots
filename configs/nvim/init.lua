@@ -92,19 +92,30 @@ vim.keymap.set(modus, '<M-y>', '"*y')
 -- #4 Colourschemes
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR> <cmd>hi Visual guifg=magenta<CR>')
 vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR> <cmd>hi Visual guifg=magenta<CR>')
--- vim.cmd([[ colorscheme nordic ]])
-vim.cmd([[ colorscheme zaibatsu ]])
+vim.cmd([[ colorscheme nordic ]])
+-- vim.cmd([[ colorscheme zaibatsu ]])
 vim.cmd [[
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
-highlight LineNr ctermfg=12
-highlight NormalFloat ctermbg=0
-highlight Visual ctermfg=13
-highlight Visual ctermbg=0
-highlight WarningMsg ctermfg=13
-highlight ErrorMsg ctermfg=14
-highlight String ctermfg=15
-highlight shQuote ctermfg=15
+highlight LineNr ctermfg=cyan
+highlight NormalFloat ctermbg=none
+highlight Visual ctermfg=magenta
+highlight Visual ctermbg=black
+highlight WarningMsg ctermfg=magenta
+highlight ErrorMsg ctermfg=red
+highlight String ctermfg=white
+highlight shQuote ctermfg=white
+
+highlight Normal guibg=none
+highlight NonText guibg=none
+highlight LineNr guifg=cyan
+highlight NormalFloat guibg=none
+highlight Visual guifg=magenta
+highlight Visual guibg=black
+highlight WarningMsg guifg=magenta
+highlight ErrorMsg guifg=red
+highlight String guifg=white
+highlight shQuote guifg=white
 ]]
 
 
