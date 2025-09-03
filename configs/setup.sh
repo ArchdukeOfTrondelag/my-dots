@@ -106,7 +106,7 @@ fi
 
 mkdir ~/.config/nvim
 
-cp -r my-dots/configs/home/.rottedfetch ./.rottedfetch
+cp -r my-dots/configs/home/.rottedfetch ~/.rottedfetch
 chmod +x .rottedfetch 
 
 cp -r my-dots/configs/nvim/init.lua ~/.config/nvim/
