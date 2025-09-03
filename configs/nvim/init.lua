@@ -8,9 +8,9 @@ vim.pack.add({
   { src = "https://github.com/AlexvZyl/nordic.nvim" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" }, -- skal ordne egen 
   { src = "https://github.com/windwp/nvim-autopairs" },
-  { src = "https://github.com/chentoast/marks.nvim" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
-  { src = "https://github.com/Krak9n/mary.nvim" },
+  -- { src = "https://github.com/chentoast/marks.nvim" },
+  -- { src = "https://github.com/Krak9n/mary.nvim" },
   -- { src = "https://github.com/nvim-lua/plenary.nvim" },
   -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
 })
@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 require("ibl").setup()
-require('mary').setup()
+-- require('mary').setup()
 
 
 -- #3 Naviagtion
@@ -80,7 +80,7 @@ vim.keymap.set('n', '<C-k>', ':FzfLua files<CR>')
 vim.keymap.set('n', '<C-l>', ':FzfLua buffers<CR>')
 vim.keymap.set('n', '<M-l>', ':FzfLua lines<CR>')
 require("nvim-autopairs").setup {}
-require("marks").setup()
+-- require("marks").setup()
 local modus = {'n', 'i', 'v', 'x', 's', 'o', 'l'}
 vim.keymap.set(modus, '<Right>', ':w<CR>')
 vim.keymap.set(modus, '<Left>', ':q<CR>')
@@ -105,6 +105,7 @@ highlight WarningMsg ctermfg=magenta
 highlight ErrorMsg ctermfg=red
 highlight String ctermfg=white
 highlight shQuote ctermfg=white
+highlight Comment ctermfg=darkgray
 
 highlight Normal guibg=none
 highlight NonText guibg=none
@@ -116,6 +117,7 @@ highlight WarningMsg guifg=magenta
 highlight ErrorMsg guifg=red
 highlight String guifg=white
 highlight shQuote guifg=white
+highlight Comment guifg=darkgray
 ]]
 
 
