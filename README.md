@@ -6,7 +6,7 @@ Installed configurations are:
   - zsh
   - tmux
   - rgfzf (my file managemnt script)
- Some options are:
+-- Some options are:
   - Vim
   - Niri + waybar
   - i3 + polybar + rofi
