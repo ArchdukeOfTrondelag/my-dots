@@ -12,6 +12,6 @@ This is a side project, so give your thoughts as you wish
 
 I have my own small file manager script that uses fzf as a ui to do stuff, look at the commands with rfc or rgf pick
 For nix users i have a small nix part here, type rgf pick to open the general picker or rgf nix to open the nix related options.
-https://github.com/ArchdukeOfTrondelag/my-dots/blob/0619716a33d39cc54736e7b33c28dcf098b1f75f/pictures/showof.mp4
+<https://github.com/ArchdukeOfTrondelag/my-dots/blob/0619716a33d39cc54736e7b33c28dcf098b1f75f/pictures/showof.mp4>
 
 I would like to credit Krak9n for the [fetch](https://github.com/Krak9n/rottedfetch). There is an alias, fetch. try it. 
