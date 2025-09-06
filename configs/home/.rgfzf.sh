@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+nix_1() {
+  valgene=( "build nix configuration" "edit the configuration.nix file" "delete and clean old nix profiles/rollbacks" )
+  valgenix=$(printf "%s\n" "${valgene[@]}" | fzf-tmux -p -w 65% -h 30% --reverse --no-preview )
+  nosb_1() {
+    sudo nixos-rebuild switch
+  }
+nosv_1() {
+  sudo nvim /etc/nixos/configuration.nix
+}
+nosd_1() {
+  nix-store --gc && sudo nix-collect-garbage -d
+}
+if [[ "$valgenix" == "${valgene[1]}" ]]; then
+  nosb_1
+fi
+if [[ "$valgenix" == "${valgene[2]}" ]]; then
+  nosv_1
+fi
+if [[ "$valgenix" == "${valgene[3]}" ]]; then
+  nosd_1
+fi
+}
 screen_1() {
   ord=$(fzf-tmux -p 35,4 --reverse --prompt="PictureName: " --print-query | awk 'NR==1' )
   sudo fbgrab ~/nix/Bilder/"$ord".png > /dev/null 2>&1
@@ -121,7 +143,7 @@ cmd_1() {
 }
 
 picker_1() {
-  valg=( "find    - finds file based on prmpt word" "cd      - fuzzy find and change directory" "open    - finds and opens a file in nvim" "co      - fuzzy find directory and make file in that directory with nvim" "md      - make directory in input directory and cd into it" "df      - cd into directory and make file, but doesnt open" "ls      - fuzzy find directory and ls, lists the content" "mf      - makes file in given directory and you remain in your directory" "mm      - moves picked directory 1 to picked directory 2" "fm      - moves file into picked directory" "fc      - copes file into picked directory" "fd      - copes directory into picked directory" "bat     - opens file in bat" "screen  - takes screenshot and names it with the user inpu" "command - selects file and executes given command with it")
+  valg=( "find    - finds file based on prmpt word" "cd      - fuzzy find and change directory" "open    - finds and opens a file in nvim" "co      - fuzzy find directory and make file in that directory with nvim" "md      - make directory in input directory and cd into it" "df      - cd into directory and make file, but doesnt open" "ls      - fuzzy find directory and ls, lists the content" "mf      - makes file in given directory and you remain in your directory" "mm      - moves picked directory 1 to picked directory 2" "fm      - moves file into picked directory" "fc      - copes file into picked directory" "fd      - copes directory into picked directory" "bat     - opens file in bat" "screen  - takes screenshot and names it with the user inpu" "command - selects file and executes given command with it" "nix - opens nix management options")
   valge=$(printf "%s\n" "${valg[@]}" | fzf-tmux -p -w 65% -h 50% --reverse --no-preview )
   if [[ "$valge" == "${valg[1]}" ]]; then
     fnd_1
@@ -168,6 +190,11 @@ picker_1() {
   if [[ "$valge" == "${valg[15]}" ]]; then
     command_1
   fi
+
+  if [[ "$valge" == "${valg[16]}" ]]; then
+    nix_1
+  fi
+
   if [[ -z "$valge" ]]; then
     cmd_1
   fi
@@ -232,12 +259,9 @@ main () {
     cmd)
       cmd_1
       ;;
+    nix)
+      nix_1
+      ;;
   esac
 
 }
-
-
-
-# if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-#     main "$@"
-# fi
