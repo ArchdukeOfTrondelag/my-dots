@@ -1,11 +1,12 @@
 # Welcome to my dotfiles
 
 To set up everything you can use :
-Installed configurations are: 
+Installed configurations is: 
   - Neovim
   - zsh
   - tmux
   - rgfzf (my file managemnt script)
+
 - Some options are:
   - Vim
   - Niri + waybar
