@@ -1,8 +1,20 @@
+# Welcome to my dotfiles
+
 To set up everything you can use :
+Installed configurations are: 
+  Neovim
+  zsh
+  tmux
+  rgfzf (my file managemnt script)
+  Some options are:
+  Vim
+  Niri + waybar
+  i3 + polybar + rofi
 ```
 curl -O https://raw.githubusercontent.com/ArchdukeOfTrondelag/my-dots/main/configs/setup.sh
 bash setup.sh
 ```
+
 
 
 This is the collection of my dotfiles
