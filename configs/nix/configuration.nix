@@ -5,8 +5,10 @@
     ./hardware-configuration.nix
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  services.displayManager.enable = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
   networking.hostName = "nixos"; # Define your hostname.
     networking.networkmanager.enable = true;
 
@@ -18,12 +20,14 @@
     variant = "nodeadkeys";
   };
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-tty;
+  };
+
   console.keyMap = "no";
   services.printing.enable = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  programs.steam.enable = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
@@ -34,24 +38,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-  };
-
-
-  hardware.graphics = {
-    enable = true;
-  };
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  hardware.nvidia.prime = {
-    intelBusId = "PCI:00:02:0";
-    nvidiaBusId = "PCI:01:0:0";
   };
 
   users.users.nix = {
@@ -65,85 +51,62 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
 
-    openttd-jgrpp
+    xwayland-satellite
 
-      vieb
-      brave
-      gimp
-      kitty
-      nautilus
-
-      gcc
-      tree-sitter
-      wget
-      gnumake
-
-      lua
-      lua-language-server
-      bash-language-server
-
-      xwayland-satellite
-      polybar
-      waybar
-      rofi
-      fuzzel
-      picom
-      arandr
-      swaylock
-      cmatrix
-      feh
-      swww
-
-      wf-recorder
-      ffmpeg
-      simplescreenrecorder
-      mpv
-
-      neovim
-      fzf
-      git
-      tmux
-      ripgrep
       fd
-      cron
-      at
       zip
       unzip
+      fbcat
+      bat
+      ripgrep
+      pandoc
+      gnumake
+
+      cmatrix
       hyfetch
       fastfetch
       btop
-      bat
 
+      gcc
+      lua
+      rust-analyzer
+      rustup
+      cargo
+      lua-language-server
+      bash-language-server
+      nil
+
+      fzf
+      neovim
+      vim
+      git
+      tmux
+      mpv
+
+      cage
+      mailutils
+      openssl
+      msmtp
+      wf-recorder
+      ffmpeg
+      vieb
+      qutebrowser
+      foot
+      fuzzel
+      curl
+      wget
+      wl-clipboard
+      swww
       ];
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager = {
-      xterm.enable = false;
-      xfce= {
-        enable = true;
-        noDesktop = true;
-      };
-    };
-    windowManager.i3.enable = true;
-  };
 
+  programs.niri.enable = true;
+  services.displayManager.ly.enable = true;
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
              url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
              }))
   ];
 
-
-  programs.niri.enable = true;
-
-  programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = ["nix"];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
-
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-
-
