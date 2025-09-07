@@ -159,7 +159,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.cmd("set completeopt+=noselect")
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.lsp.enable({ 'lua_ls', 'bashls', 'rust_analyzer' })
+vim.lsp.enable({ 'lua_ls', 'bashls', 'rust_analyzer', 'nil_ls' })
 
 require 'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
