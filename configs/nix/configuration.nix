@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{config, pkgs, lib, ... }:
 # let
 # home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
 # in
@@ -47,22 +47,39 @@ in
   };
 
   nixowos.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
 
-  hardware = {
-    graphics.enable = true;
-    nvidia = {
-      open = true;
-      modesetting.enable = true;
-      nvidiaSettings = true;
-      powerManagement.enable = false;
-      package = config.boot.kernelPackages.nvidiaPackages.stable; # Same as production
+
+
+
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+  };
+
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" ];
+    displayManager.startx.enable = true;
+  };
+
+  hardware.nvidia = {
+    open = true;
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    prime = {
+      intelBusId = "PCI:00:02:0";
+      nvidiaBusId = "PCI:01:0:0";
     };
   };
-  hardware.nvidia.prime = {
-    intelBusId = "PCI:00:02:0";
-    nvidiaBusId = "PCI:01:0:0";
-  };
+
+  boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.extraModprobeConfig = ''
+    options nvidia-drm modeset=1
+    '';
+  boot.blacklistedKernelModules = [ "nouveau" ];
 
   users.users.nix = {
     isNormalUser = true;
@@ -135,7 +152,6 @@ in
       bat
       ];
   services.xserver = {
-    enable = true;
     desktopManager = {
       xterm.enable = false;
       xfce= {
