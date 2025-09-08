@@ -19,7 +19,6 @@ in
   services.displayManager.enable = true;
   networking.hostName = "nixos"; # Define your hostname.
     networking.networkmanager.enable = true;
-
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "nb_NO.UTF-8";
 
@@ -27,11 +26,10 @@ in
     layout = "no";
     variant = "nodeadkeys";
   };
-
   console.keyMap = "no";
   services.printing.enable = true;
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixowos.enable = true;
 
   programs.steam.enable = true;
   programs.zsh.enable = true;
@@ -46,22 +44,15 @@ in
     pulse.enable = true;
   };
 
-  nixowos.enable = true;
-
-
-
-
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
-
   services.xserver = {
     enable = true;
     videoDrivers = [ "nvidia" ];
     displayManager.startx.enable = true;
   };
-
   hardware.nvidia = {
     open = true;
     modesetting.enable = true;
@@ -92,6 +83,7 @@ in
 
     openttd-jgrpp
       wl-clipboard
+      fbcat
       cowsay
       lolcat
 
@@ -106,7 +98,6 @@ in
       wget
       gnumake
 
-      python3
       lua
       cargo
       rust-analyzer
@@ -116,20 +107,15 @@ in
       nil
 
       xwayland-satellite
-      polybar
       waybar
-      rofi
       fuzzel
       picom
-      arandr
       swaylock
       cmatrix
-      feh
       swww
 
       wf-recorder
       ffmpeg
-      simplescreenrecorder
       mpv
       pavucontrol
       pulsemixer
@@ -148,19 +134,10 @@ in
       unzip
       hyfetch
       fastfetch
+      uwufetch
       btop
       bat
       ];
-  services.xserver = {
-    desktopManager = {
-      xterm.enable = false;
-      xfce= {
-        enable = true;
-        noDesktop = true;
-      };
-    };
-    windowManager.i3.enable = true;
-  };
   services.displayManager.ly.enable = true;
 
   nixpkgs.overlays = [
@@ -168,6 +145,16 @@ in
              url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
              }))
   ];
+  fonts.packages = with pkgs; [
+    nerd-fonts.iosevka
+  ];
+  environment.sessionVariables = {
+    QT_FONT_DPI = "96";
+    QT_QPA_PLATFORMTHEME = "gtk2";
+    QT_STYLE_OVERRIDE = "gtk2";
+    QT_FONT_NAME = "Iosevka Nerd Font 14";
+    GTK_FONT_NAME = "Iosevka Nerd Font 14";
+  };
 
   programs.niri.enable = true;
 
