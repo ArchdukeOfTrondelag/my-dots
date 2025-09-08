@@ -9,6 +9,7 @@ vim.pack.add({
   { src = "https://github.com/nvim-tree/nvim-web-devicons" }, -- skal ordne egen 
   { src = "https://github.com/windwp/nvim-autopairs" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
+  { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
   -- { src = "https://github.com/chentoast/marks.nvim" },
   -- { src = "https://github.com/Krak9n/mary.nvim" },
   -- { src = "https://github.com/nvim-lua/plenary.nvim" },
