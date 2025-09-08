@@ -8,16 +8,11 @@ input {
 		tap
 		natural-scroll
 	}
-	mouse {
-	}
 
-	trackpoint {
-	}
 	focus-follows-mouse
 }
 overview {
-	zoom 0.65
-	// backdrop-color "#f2bff2"
+	zoom 0.60
 	backdrop-color "transparent"
 
 }
@@ -55,8 +50,6 @@ layout {
 		width 1
 		active-color "#ffc87f"
 		inactive-color "#505050"
-	}
-	struts {
 	}
 }
 prefer-no-csd
@@ -172,7 +165,7 @@ binds {
 	Mod+C { center-column; }
 	Mod+Minus { set-column-width "-10%"; }
 	Mod+Equal { set-column-width "+10%"; }
-	Mod+Shift+Minus { set-window-height "-10%"; }
+  Mod+Shift+Minus { set-window-height "-10%"; }
 	Mod+Shift+Equal { set-window-height "+10%"; }
 	Mod+V       { toggle-window-floating; }
 	Mod+Shift+V { switch-focus-between-floating-and-tiling; }
