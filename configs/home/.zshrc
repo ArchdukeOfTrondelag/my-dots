@@ -52,3 +52,4 @@ echo; clear
 export EDITOR='nvim'
 export VISUAL=$EDITOR
 export $tzvt_set_tmux_window_status=true
+alias nvim="LANG=en_US.UTF-8 nvim"
