@@ -9,36 +9,22 @@ vim.pack.add({
   { src = "https://github.com/nvim-tree/nvim-web-devicons" }, -- skal ordne egen 
   { src = "https://github.com/windwp/nvim-autopairs" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
-  { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+  { src = "https://github.com/OXY2DEV/markview.nvim" },
   -- { src = "https://github.com/chentoast/marks.nvim" },
   -- { src = "https://github.com/Krak9n/mary.nvim" },
   -- { src = "https://github.com/nvim-lua/plenary.nvim" },
   -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
+
+  { src = "https://github.com/hrsh7th/nvim-cmp" },
+  { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+  { src = "https://github.com/hrsh7th/cmp-buffer" },
+  { src = "https://github.com/hrsh7th/cmp-path" },
+  { src = "https://github.com/L3MON4D3/LuaSnip" },
+  { src = "https://github.com/saadparwaiz1/cmp_luasnip" },
 })
 
--- *1 Pluginmanagement
-vim.keymap.set('n', '<M-p>', ':!rm -r ~/.local/share/nvim<CR> :call ShowFloatMessage("You deleted .local/share/nvim")<CR>')
-vim.cmd([[
-function! ShowFloatMessage(msg)
-let width = 30
-let height = 1
-let buf = nvim_create_buf(v:false, v:true)
-let ui = nvim_list_uis()[0]
-let opts = {
-\ 'relative': 'editor',
-\ 'width': width,
-\ 'height': height,
-\ 'col': (ui.width / 2) - (width / 2),
-\ 'row': (ui.height / 6) - (height / 4),
-\ 'style': 'minimal',
-\ }
-let win = nvim_open_win(buf, 1, opts)
-call nvim_buf_set_lines(buf, 0, -1, v:true, [a:msg])
-endfunction
-]])
-
-
 -- #2 Options
+vim.keymap.set('n', '<M-p>', ':!rm -r ~/.local/share/nvim<CR> ')
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.wrap = false
@@ -88,6 +74,7 @@ vim.keymap.set(modus, '<Left>', ':q<CR>')
 vim.keymap.set(modus, '<Up>', ':FzfLua files<CR>')
 vim.keymap.set(modus, '<Down>', ':Lex<CR>')
 vim.keymap.set(modus, '<M-y>', '"*y')
+vim.keymap.set(modus, '<M-0>', ':set cursorcolumn<CR> ')
 
 
 -- #4 Colourschemes
@@ -128,6 +115,13 @@ vim.keymap.set('n', '<leader>w', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>')
 vim.keymap.set('n', '<leader>v', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', '<leader>b', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+vim.keymap.set('n', '<leader>r', '<cmd>FzfLua lsp_workspace_diagnostics<CR>')
+vim.keymap.set('n', '<leader>f', '<cmd>FzfLua lsp_document_diagnostics<CR>')
+vim.keymap.set('n', '<leader>d', '<cmd>FzfLua registers<CR>')
+vim.diagnostic.config({
+  signs = true,
+  update_in_insert = true,
+})
 
 vim.keymap.set('n', '<leader>a', function()
   local new_config = not vim.diagnostic.config().virtual_text
@@ -145,6 +139,8 @@ vim.diagnostic.config({
     },
     numhl = {
       [vim.diagnostic.severity.WARN] = 'WarningMsg',
+      [vim.diagnostic.severity.HINT] = 'HintMsg',
+      [vim.diagnostic.severity.INFO] = 'InfoMsg',
     },
   },
 })
@@ -157,10 +153,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+local cmp = require('cmp')
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+  }),
+})
 
 vim.cmd("set completeopt+=noselect")
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.lsp.enable({ 'lua_ls', 'bashls', 'rust_analyzer', 'nil_ls' })
+vim.lsp.enable({ 'lua_ls', 'bashls', 'rust_analyzer', 'nil_ls', 'marksman' })
 
 require 'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
