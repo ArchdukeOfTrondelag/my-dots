@@ -84,10 +84,10 @@ in
     openttd-jgrpp
       wl-clipboard
       fbcat
-      cowsay
-      lolcat
 
       vieb
+      irssi
+      scli
       firefox
       gimp
       foot
@@ -103,6 +103,7 @@ in
       rust-analyzer
       rustup
       lua-language-server
+      pandoc
       bash-language-server
       nil
 
@@ -117,7 +118,6 @@ in
       wf-recorder
       ffmpeg
       mpv
-      pavucontrol
       pulsemixer
 
       vim
@@ -134,7 +134,6 @@ in
       unzip
       hyfetch
       fastfetch
-      uwufetch
       btop
       bat
       ];
@@ -165,5 +164,3 @@ in
 
   system.stateVersion = "25.05"; # Did you read the comment?
 }
-
-
