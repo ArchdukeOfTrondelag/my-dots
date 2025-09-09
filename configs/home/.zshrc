@@ -2,10 +2,9 @@ fpath+=($HOME/.zsh/pure)
 source ~/.zplug/init.zsh
 autoload -U promptinit; promptinit
 prompt pure
-# auto starts tmux when launching a terminal/konsole etc
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-	tmux a -t default || exec tmux new -s default && exit;
-fi
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+# 	tmux a -t default || exec tmux new -s default && exit;
+# fi
 
 alias fetch='~/.rottedfetch'
 alias rgf='source ~/.rgfzf.sh && main '
@@ -19,15 +18,14 @@ alias font1='sudo setfont -d'
 alias font2='sudo setfont -d iso07u-16'
 alias nvimf='nvim -c "FzfLua files"'
 alias vimf='vim -c Files'
+alias tl='tmux list-sessions'
+alias ta='tmux attach'
+alias tn='tmux new -s'
+alias tk='tmux kill-session -t'
 
-# aliases
-# nixos build
 alias -- nosb='sudo nixos-rebuild switch'
-# noxos open config file in vim
 alias -- nosv='sudo nvim /etc/nixos/configuration.nix'
-# remove the cache
 alias -- ncac='rm -rf ~/.cache/* && rm -rf .cache/nvim/'
-# remove old versions and rebuilds the system
 alias -- nosd='nix-store --gc && sudo nix-collect-garbage -d' 
 
 
@@ -53,3 +51,4 @@ export EDITOR='nvim'
 export VISUAL=$EDITOR
 export $tzvt_set_tmux_window_status=true
 alias nvim="LANG=en_US.UTF-8 nvim"
+source <(fzf --zsh)
