@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 nix_1() {
   valgene=( "build nix configuration" "edit the configuration.nix file" "delete and clean old nix profiles/rollbacks" )
   valgenix=$(printf "%s\n" "${valgene[@]}" | fzf-tmux -p -w 65% -h 30% --reverse --no-preview )
@@ -265,3 +266,7 @@ main () {
   esac
 
 }
+
+
+
+i
