@@ -14,6 +14,7 @@ Installed configurations is:
 ```
 curl -O https://raw.githubusercontent.com/ArchdukeOfTrondelag/my-dots/main/configs/setup.sh
 bash setup.sh
+rm setup.sh
 ```
 
 
