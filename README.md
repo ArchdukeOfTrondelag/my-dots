@@ -11,7 +11,7 @@ Installed configurations are:
   - Niri + waybar
   - i3 + polybar + rofi
 
-###To get the setup you can run these comments, and as it's someone elses scripts read it before running, as it removes the files it affects. 
+To get the setup you can run these comments, and as it's someone elses scripts read it before running, as it removes the files it affects. 
 ```
 curl -O https://raw.githubusercontent.com/ArchdukeOfTrondelag/my-dots/main/configs/setup.sh
 bash setup.sh
