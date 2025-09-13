@@ -99,7 +99,6 @@ highlight WarningMsg ctermfg=magenta
 highlight ErrorMsg ctermfg=red
 highlight String ctermfg=white
 highlight shQuote ctermfg=white
-highlight Comment ctermfg=darkgray
 
 highlight Normal guibg=none
 highlight NonText guibg=none
@@ -111,7 +110,6 @@ highlight WarningMsg guifg=magenta
 highlight ErrorMsg guifg=red
 highlight String guifg=white
 highlight shQuote guifg=white
-highlight Comment guifg=darkgray
 ]]
 
 
