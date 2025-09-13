@@ -4,11 +4,11 @@ autoload -U promptinit; promptinit
 prompt pure
 
 alias fetch='~/setup/rottedfetch'
-alias rgf='source ~/setup/rgfzf.sh && main '
-alias c='source ~/setup/rgfzf.sh && main cd'
-alias s='source ~/setup/rgfzf.sh && main find'
-alias f='source ~/setup/rgfzf.sh && main open'
-alias rfc='source ~/setup/rgfzf.sh && main cmd '
+alias rgf='source ~/setup/.rgfzf.sh && main '
+alias c='source ~/setup/.rgfzf.sh && main cd'
+alias s='source ~/setup/.rgfzf.sh && main find'
+alias f='source ~/setup/.rgfzf.sh && main open'
+alias rfc='source ~/setup/.rgfzf.sh && main cmd '
 
 alias nvimf='nvim -c "FzfLua files"'
 alias tl='tmux list-sessions'
