@@ -1,7 +1,6 @@
 # Welcome to my dotfiles
 
-To set up everything you can use :
-Installed configurations is: 
+Installed configurations are: 
   - Neovim
   - zsh
   - tmux
