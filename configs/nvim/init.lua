@@ -3,27 +3,18 @@ vim.pack.add({
   { src = "https://github.com/ibhagwan/fzf-lua" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
-  { src = "https://github.com/vim-airline/vim-airline" },
   { src = "https://github.com/akinsho/bufferline.nvim" },
-  { src = "https://github.com/AlexvZyl/nordic.nvim" },
-  { src = "https://github.com/nvim-tree/nvim-web-devicons" }, -- skal ordne egen 
   { src = "https://github.com/windwp/nvim-autopairs" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
-  { src = "https://github.com/OXY2DEV/markview.nvim" },
 
   { src = "https://github.com/hrsh7th/nvim-cmp" },
   { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
-  -- { src = "https://github.com/L3MON4D3/LuaSnip" },
-  -- { src = "https://github.com/saadparwaiz1/cmp_luasnip" },
-  -- { src = "https://github.com/hrsh7th/cmp-buffer" },
-  -- { src = "https://github.com/hrsh7th/cmp-path" },
   { src = "https://github.com/garymjr/nvim-snippets" },
-  { src ="https://github.com/rafamadriz/friendly-snippets" },
+  { src = "https://github.com/rafamadriz/friendly-snippets" },
+
   -- { src = "https://github.com/chentoast/marks.nvim" },
   -- { src = "https://github.com/Krak9n/mary.nvim" },
-  -- { src = "https://github.com/nvim-lua/plenary.nvim" },
-  -- { src = "https://github.com/nvim-telescope/telescope.nvim" },
-
+  -- { src = "https://github.com/vim-airline/vim-airline" },
 
   -- { src ="" },
 })
@@ -58,7 +49,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 require("ibl").setup()
 -- require('mary').setup()
 
-
 -- #3 Naviagtion
 vim.keymap.set('n', '<C-n>', ':bn <CR>')
 vim.keymap.set('n', '<C-Right>', ':bn <CR>')
@@ -85,9 +75,7 @@ vim.keymap.set(modus, '<M-0>', ':set cursorcolumn<CR> ')
 
 -- #4 Colourschemes
 vim.keymap.set('n', '<F8>', ':colorscheme zaibatsu<CR> <cmd>hi Visual guifg=magenta<CR>')
-vim.keymap.set('n', '<F9>', ':colorscheme nordic<CR> <cmd>hi Visual guifg=magenta<CR>')
-vim.cmd([[ colorscheme nordic ]])
--- vim.cmd([[ colorscheme zaibatsu ]])
+vim.cmd([[ colorscheme zaibatsu ]])
 vim.cmd [[
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -153,38 +141,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
     end
   end,
 })
 local cmp = require('cmp')
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
   mapping = cmp.mapping.preset.insert({
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
   }),
+  completion = {
+    completeopt = 'menu,menuone,noinsert,select',
+  },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
   }),
 })
 
-vim.cmd("set completeopt+=noselect")
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.lsp.enable({ 'lua_ls', 'bashls', 'rust_analyzer', 'nil_ls', 'marksman' })
-
 require 'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
   indent = { enable = true },
@@ -197,4 +176,8 @@ vim.keymap.set('n', '<leader>q', "mqG=gg'q")
 
 -- #6 Apparance
 -- *5 lines
-require("bufferline").setup()
+-- require("bufferline").setup()
+vim.cmd([[
+set cmdheight=1
+set laststatus=1
+]])
