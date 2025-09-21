@@ -31,3 +31,4 @@ For nix users i have a small nix part here, type rgf pick to open the general pi
 
 
 I would like to credit Krak9n for the [fetch](https://github.com/Krak9n/rottedfetch). There is an alias, fetch. try it. 
+I now also have my own fetch, it's in ~/setup/clock.sh. Will rename it soon, there you can enable gpu in the file, as that needs lspci to work and it's not installed as a part of the default system in most cases.
