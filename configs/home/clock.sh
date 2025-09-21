@@ -55,9 +55,9 @@ if [[ "${distro1[*]}" == *@(NixOS|NixOwOS)* ]]; then
 fi
 echo "__________________________________________"
 echo "CPU:" "${cpu1[@]}"
-echo "Mem:" "${mem[1]}" "GiB" / "${mem[2]}" "GiB"
+echo "Mem:" "${mem[2]}" "GiB" / "${mem[1]}" "GiB"
 if [[ "${swap[1]}" != "0" ]]; then
-  echo "Swap:" "${swap[1]}" "GiB" / "${swap[2]}" "GiB"
+  echo "Swap:" "${swap[2]}" "GiB" / "${swap[1]}" "GiB"
 fi
 if [[ "$gpu1" = "yes" ]]; then
   printf '%s\n' "${gpu[@]}"
