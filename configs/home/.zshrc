@@ -21,7 +21,6 @@ alias -- nosv='sudo nvim /etc/nixos/configuration.nix'
 alias -- ncac='rm -rf ~/.cache/* && rm -rf .cache/nvim/'
 alias -- nosd='nix-store --gc && sudo nix-collect-garbage -d' 
 
-
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'Aloxaf/fzf-tab'
@@ -39,9 +38,9 @@ fi
 zplug load --verbose
 echo; clear
 
-
 export EDITOR='nvim'
 export VISUAL=$EDITOR
 export $tzvt_set_tmux_window_status=true
 alias nvim="LANG=en_US.UTF-8 nvim"
 source <(fzf --zsh)
+rgf
