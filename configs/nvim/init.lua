@@ -3,18 +3,14 @@ vim.pack.add({
   { src = "https://github.com/ibhagwan/fzf-lua" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
-  { src = "https://github.com/akinsho/bufferline.nvim" },
   { src = "https://github.com/windwp/nvim-autopairs" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
 
   { src = "https://github.com/hrsh7th/nvim-cmp" },
   { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
-  { src = "https://github.com/garymjr/nvim-snippets" },
-  { src = "https://github.com/rafamadriz/friendly-snippets" },
 
   -- { src = "https://github.com/chentoast/marks.nvim" },
   -- { src = "https://github.com/Krak9n/mary.nvim" },
-  -- { src = "https://github.com/vim-airline/vim-airline" },
 
   -- { src ="" },
 })
@@ -159,7 +155,6 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
   }),
 })
 
@@ -176,7 +171,6 @@ vim.keymap.set('n', '<leader>q', "mqG=gg'q")
 
 -- #6 Apparance
 -- *5 lines
--- require("bufferline").setup()
 vim.cmd([[
 set cmdheight=1
 set laststatus=1
