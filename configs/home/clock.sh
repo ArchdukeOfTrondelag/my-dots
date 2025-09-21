@@ -35,7 +35,7 @@ swap=( $(free -g | awk "/^Swap:/ ") )
 ctime=$(date +"%H:%M")
 dtime=$(date +"%d-%m-%Y")
 
-stor=( $( df -h --type=ext4 | grep "/dev/sda" )  )
+stor=( $( df -h --type=ext4 | grep "/dev/" )  )
 unset "stor[0]" "stor[3]" "stor[4]" "stor[5]"
 stor=("${stor[@]}")
 
