@@ -1,199 +1,73 @@
 #!/usr/bin/env bash
 
-sysname="alice"
-editor="nvim"
 
-tools() {
-  toolvalg=( "calcurse" "scli" "irssi" "nmtui" "nvim" )
-  toolvalg1=$(printf "%s\n" "${toolvalg[@]}" | fzf-tmux -p -w 25% -h 25% --reverse --no-preview )
-  $toolvalg1
-}
-setup_1() {
-  mkdir ~/"$sysname"
-  mkdir ~/"$sysname"/screenshot
-}
-nix_1() {
-  valgene=( "build nix configuration" "edit the configuration.nix file" "delete and clean old nix profiles/rollbacks" )
-  valgenix=$(printf "%s\n" "${valgene[@]}" | fzf-tmux -p -w 65% -h 30% --reverse --no-preview )
-  nosb_1() {
-    sudo nixos-rebuild switch
-  }
-nosv_1() {
-  sudo "$editor" /etc/nixos/configuration.nix
-}
-nosd_1() {
-  nix-store --gc && sudo nix-collect-garbage -d
-}
-if [[ "$valgenix" == "${valgene[1]}" ]]; then nosb_1
+name="Alice"
+user1=( $(whoami) )
+distro1=( $(awk -F'[="]+' '/^NAME=/ { print $2 }' /etc/os-release) )
+kerver=$(uname -r)
+logo="\\____)\\___
+/\\__  ___^<
+    )/"
+gpu1="no" #set the variable to "yes" to enable gpu in the fetch with lspci
+
+if [[ "${distro1[*]}" == *@(NixOS|NixOwOS)* ]]; then
+  gens=( $(nixos-rebuild list-generations) )
+  content="${gens[8]}"
+  packages=( $(nix-store --query --requisites /run/current-system | wc -l ) )
 fi
-if [[ "$valgenix" == "${valgene[2]}" ]]; then nosv_1
+
+content1="Welcome to the $name machine with ${distro1[*]}"
+if [ "${content: -1}" == "5" ]; then
+  content1="Welcome to the $name machine with ${distro1[*]} :3"
 fi
-if [[ "$valgenix" == "${valgene[3]}" ]]; then nosd_1
+
+cpu1=( $( grep 'model name' /proc/cpuinfo | uniq ) )
+unset "cpu1[0]" "cpu1[1]" "cpu1[2]"
+cpu1=("${cpu1[@]}")
+
+if [[ "$gp1" == "yes" ]]; then
+  gpu=( $( lspci | grep VGA | awk -F'VGA compatible controller: ' '{print $20}' ) )
 fi
-}
-screen_1() {
-  ord=$(fzf-tmux -p 35,4 --reverse --prompt="PictureName: " --print-query | awk 'NR==1' )
-  sudo fbgrab ~/"$sysname"/screenshot/"$ord".png > /dev/null 2>&1
-}
 
-command_1() { 
-  command=$(fzf-tmux -p 35,4 --reverse --prompt="Command: " --print-query | awk 'NR==1' )
-  fd --type f --hidden | fzf-tmux -p -w 35% -h 25% -p --reverse --no-preview | xargs "$command"
-}
+mem=( $(free -g | awk "/^Mem:/ ") )
+swap=( $(free -g | awk "/^Swap:/ ") )
 
+ctime=$(date +"%H:%M")
+dtime=$(date +"%d-%m-%Y")
 
-fnd_1() {
-  ord=$(fzf-tmux -p 35,4 --reverse --prompt="Searchword: " --print-query | awk 'NR==1' )
-  rg -l --hidden "$ord" | fzf-tmux -p 80%,80% --delimiter : --preview "bat --color=always  --highlight-line=1 {1} "| xargs "$editor"
-}
+stor=( $( df -h --type=ext4 | grep "/dev/sda" )  )
+unset "stor[0]" "stor[3]" "stor[4]" "stor[5]"
+stor=("${stor[@]}")
 
-cd_1() { 
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  cd "$dir"
-}
-
-open_1() { 
-  fd --type f --hidden | fzf-tmux -p -w 35% -h 25% -p --reverse --no-preview | xargs "$editor"
-}
-
-display_1() { 
-  ord=$(fd --type f --hidden -e png | fzf-tmux -p -w 35% -h 25% -p --reverse --no-preview)
-  ascii-image-converter -C -b "$ord"
-}
-
-help_1() {
-  bat ~/.rgfzf.sh
-}
-
-co_1() {
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  cd "$dir"
-  ord=$(fzf-tmux -p 35,4 --reverse --prompt="Filnavn: " --print-query | awk 'NR==1' )
-  "$editor" "$ord"
-}
-
-cd_2() {
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  cd "$dir"
-  ord=$(fzf-tmux -p 35,4 --reverse --prompt="Mappenavn: " --print-query | awk 'NR==1' )
-  mkdir "$ord"
-  cd "$ord"
-}
-
-mf_1() {
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  cd "$dir"
-  ord=$(fzf-tmux -p 35,4 --reverse --prompt="Filnavn: " --print-query | awk 'NR==1' )
-  touch "$ord" 
-  cd --
-}
-
-co_2() {
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  cd "$dir"
-  ord=$(fzf-tmux -p 35,4 --reverse --prompt="Filnavn: " --print-query | awk 'NR==1' )
-  touch "$ord" 
-}
-
-
-fd_1() {
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  dir2=$(fd --type d --hidden | fzf-tmux -p)
-  cp -r "$dir" "$dir2"
-}
-
-cp_1() {
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  dir2=$(fd --type d --hidden | fzf-tmux -p)
-  mv "$dir" "$dir2"
-}
-
-cp_2() {
-  fil=$( fd --type f --hidden | fzf-tmux -p -w 35% -h 25% -p --reverse --no-preview )
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  mv "$fil" "$dir"
-}
-
-cp_3() {
-  fil=$( fd --type f --hidden | fzf-tmux -p -w 35% -h 25% -p --reverse --no-preview )
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  cp "$fil" "$dir"
-}
-
-ls_1() {
-  dir=$(fd --type d --hidden | fzf-tmux -p)
-  ls "$dir"
-}
-
-bat_1() {
-  fil=$( fd --type f --hidden | fzf-tmux -p -w 35% -h 25% -p --reverse --no-preview )
-  bat "$fil"
-}
-
-picker_1() {
-  valg=( "find    - finds file based on prmpt word" "cd      - fuzzy find and change directory" "open    - finds and opens a file in nvim" "co      - fuzzy find directory and make file in that directory with nvim" "md      - make directory in input directory and cd into it" "df      - cd into directory and make file, but doesnt open" "ls      - fuzzy find directory and ls, lists the content" "mf      - makes file in given directory and you remain in your directory" "mm      - moves picked directory 1 to picked directory 2" "fm      - moves file into picked directory" "fc      - copes file into picked directory" "fd      - copes directory into picked directory" "bat     - opens file in bat" "screen  - takes screenshot and names it with the user inpu" "command - selects file and executes given command with it" "nix - opens nix management options" "tools - a picker of useful tools")
-  valge=$(printf "%s\n" "${valg[@]}" | fzf-tmux -p -w 65% -h 50% --reverse --no-preview )
-  if [[ "$valge" == "${valg[1]}" ]]; then fnd_1
+echo "${logo[*]}"
+echo "******************************************"
+echo "$content1"
+echo "******************************************"
+echo "User:" "${user1[@]}"
+echo "Time:" "$ctime"
+echo "Date:" "$dtime"
+echo "__________________________________________"
+echo "Distro:" "${distro1[@]}"
+echo "Kernel:" "$kerver"
+if [[ "${distro1[*]}" == *@(NixOS|NixOwOS)* ]]; then
+  echo "Nix generation: ${content}"
+  echo "Number of packages:" "${packages[@]}"
+fi
+echo "__________________________________________"
+echo "CPU:" "${cpu1[@]}"
+echo "Mem:" "${mem[1]}" "GiB"
+if [[ "${swap[1]}" != "0" ]]; then
+  echo "Swap:" "${swap[1]}" "GiB"
+fi
+if [[ "$gpu1" = "yes" ]]; then
+  printf '%s\n' "${gpu[@]}"
+fi
+if [[ "${distro1[*]}" == *@(NixOS|NixOwOS)* ]]; then
+  if [ "${content: -1}" == "9" ]; then
+    if [[ "$gpu1" = "no" ]]; then
+      echo "Sorry, i stole your GPU :3"
+    fi
   fi
-  if [[ "$valge" == "${valg[2]}" ]]; then cd_1
-  fi
-  if [[ "$valge" == "${valg[3]}" ]]; then open_1
-  fi
-  if [[ "$valge" == "${valg[4]}" ]]; then co_1
-  fi
-  if [[ "$valge" == "${valg[5]}" ]]; then cd_2
-  fi
-  if [[ "$valge" == "${valg[6]}" ]]; then co_2
-  fi
-  if [[ "$valge" == "${valg[7]}" ]]; then ls_1
-  fi
-  if [[ "$valge" == "${valg[8]}" ]]; then mf_1
-  fi
-  if [[ "$valge" == "${valg[9]}" ]]; then cp_1
-  fi
-  if [[ "$valge" == "${valg[10]}" ]]; then cp_2
-  fi
-  if [[ "$valge" == "${valg[11]}" ]]; then cp_3
-  fi
-  if [[ "$valge" == "${valg[12]}" ]]; then fd_1
-  fi
-  if [[ "$valge" == "${valg[13]}" ]]; then bat_1
-  fi
-  if [[ "$valge" == "${valg[14]}" ]]; then screen_1
-  fi
-  if [[ "$valge" == "${valg[15]}" ]]; then command_1
-  fi
-  if [[ "$valge" == "${valg[16]}" ]]; then nix_1
-  fi
-  if [[ "$valge" == "${valg[17]}" ]]; then tools
-  fi
+fi
+echo "Disk:" "${stor[1]}"iB / "${stor[0]}"iB
 
-  if [[ -z "$valge" ]]; then echo "no option selected"
-  fi
-}
-
-main () {
-  case "$1" in
-    setup) setup_1 ;;
-    pick) picker_1 ;;
-    command) command_1 ;;
-    screen) screen_1 ;;
-    bat) bat_1 ;;
-    fc) cp_3 ;;
-    fm) cp_2 ;;
-    mm) cp_1 ;;
-    find) fnd_1 ;;
-    cd) cd_1 ;;
-    co) co_1 ;;
-    open) open_1 ;;
-    md) cd_2 ;;
-    mf) mf_1 ;;
-    ls) ls_1 ;;
-    --help) help_1 ;;
-    fd) fd_1 ;;
-    df) co_2 ;;
-    cmd) cmd_1 ;;
-    nix) nix_1 ;;
-    tools) tools ;;
-  esac
-}
