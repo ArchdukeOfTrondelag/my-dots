@@ -109,6 +109,7 @@ mkdir ~/setup
 
 cp -r my-dots/configs/home/.rottedfetch ~/setup/rottedfetch
 chmod +x setup/rottedfetch 
+cp -r my-dots/configs/home/clock.sh ~/setup/clock.sh
 
 cp -r my-dots/configs/nvim/init.lua ~/.config/nvim/
 
