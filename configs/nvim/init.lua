@@ -4,7 +4,6 @@ vim.pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
   { src = "https://github.com/windwp/nvim-autopairs" },
-  { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
 
   { src = "https://github.com/hrsh7th/nvim-cmp" },
   { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
@@ -26,15 +25,33 @@ vim.o.shiftwidth = 2
 vim.g.mapleader = " "
 vim.o.cursorline = true
 vim.o.scrolloff = 8
+vim.o.sidescrolloff = 6
+vim.g.netrw_banner = false
+vim.g.netrw_liststyle = 3
+vim.g.netrw_preview = 1
 vim.o.winborder = "rounded"
 vim.o.autocomplete = true
+vim.g.autoformat = true
+vim.o.wildmode = "longest:full,full"
+vim.o.colorcolumn = "120"
+vim.o.confirm = true
+vim.o.autowrite = true
+vim.o.list = true
+vim.cmd([[
+set listchars=trail:-
+set listchars=tab:>-
+set listchars=nbsp:+
+set listchars=extends:>
+set listchars=eol:$
+set listchars=precedes:<
+]])
+
 
 -- *2 undo and micelanious options
 vim.cmd([[ set undodir=~/.vim/undo-di ]])
 vim.cmd([[ set undofile ]])
 vim.cmd([[ tnoremap <M-Esc> <C-\><C-n> ]])
 vim.cmd([[ highlight DiagnosticError guifg=BrightRed ]])
-vim.o.list = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("yank-highlight", { clear = true }),
@@ -42,7 +59,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
-require("ibl").setup()
 -- require('mary').setup()
 
 -- #3 Naviagtion
@@ -99,6 +115,7 @@ highlight shQuote guifg=white
 
 -- #5 LSP, formating, treesitter and more
 -- *3 lsp keybinds
+vim.keymap.set('n', '<leader>q', "mqG=gg'q")
 vim.keymap.set('n', '<leader>w', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>')
 vim.keymap.set('n', '<leader>v', '<cmd>lua vim.diagnostic.goto_next()<CR>')
@@ -165,13 +182,7 @@ require 'nvim-treesitter.configs'.setup {
   incremental_selection = { enable = true }
 }
 
--- *4 indent
-vim.keymap.set('n', '<leader>q', "mqG=gg'q")
-
-
 -- #6 Apparance
--- *5 lines
 vim.cmd([[
 set cmdheight=1
-set laststatus=1
 ]])
