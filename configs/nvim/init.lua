@@ -44,6 +44,7 @@ set listchars=nbsp:+
 set listchars=extends:>
 set listchars=eol:$
 set listchars=precedes:<
+set listchars=multispace:.
 ]])
 
 
@@ -185,4 +186,5 @@ require 'nvim-treesitter.configs'.setup {
 -- #6 Apparance
 vim.cmd([[
 set cmdheight=1
+set laststatus=1 
 ]])
