@@ -1,3 +1,8 @@
+# important, I've moved to codeberg now. you find me at https://codeberg.org/trondelagcutie 
+
+
+
+
 # Welcome to my dotfiles
 
 Installed configurations are: 
