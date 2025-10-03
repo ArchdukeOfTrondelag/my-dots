@@ -1,4 +1,4 @@
-# important, I've moved to codeberg now. you find me at https://codeberg.org/trondelagcutie 
+# !! Important, I've moved to codeberg now. you find me at https://codeberg.org/trondelagcutie !!
 
 
 
